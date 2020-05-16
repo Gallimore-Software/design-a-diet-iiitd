@@ -1,0 +1,14 @@
+DietDesigner/node_modules/**/*
+DietDesigner/.expo/*
+DietDesigner/npm-debug.*
+DietDesigner/*.jks
+DietDesigner/*.p8
+DietDesigner/*.p12
+DietDesigner/*.key
+DietDesigner/*.mobileprovision
+DietDesigner/*.orig.*
+DietDesigner/web-build/
+
+# macOS
+.DS_Store
+DietDesigner/.DS_Store
