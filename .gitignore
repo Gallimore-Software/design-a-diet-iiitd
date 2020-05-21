@@ -1,3 +1,5 @@
 DietDesigner/node_modules
 DietDesigner/yarn.lock
+server/node_modules
+server/package-lock.json
 
