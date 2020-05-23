@@ -5,7 +5,8 @@ import CartItems from '../components/CartScreenComponents/CartItems';
 import Info from '../components/CartScreenComponents/Info';
 import ButtonArea from '../components/CartScreenComponents/ButtonArea'
 
-export default function CartScreen() {
+export default function CartScreen({props}) {
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="skyblue" barStyle="light-content"/>

@@ -7,8 +7,12 @@ import RecentIngredientList from '../components/RecentIngredientList';
 import { ReactButton, ScrollView } from 'react-native-gesture-handler';
 
 
-export default function SearchScreen() {
+export default function SearchScreen({navigation}) {
     let list = [1,2,3,4,5,6,7,8,9]
+
+    const onPressHandler = () => {
+        navigation.navigate('IngredientInfoScreen');
+      }
 
     return (
         <View style={{flex: 1, backgroundColor: '#ffffff'}}>
@@ -28,7 +32,9 @@ export default function SearchScreen() {
                     <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity>
                 </View>
                 <View style={ { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingTop: 10 }}>
-                    <RecentIngredientList ingredient="Banana"/>
+                    <TouchableOpacity onPress={onPressHandler}>                    
+                        <RecentIngredientList ingredient="Potato"/>
+                    </TouchableOpacity>
                     <RecentIngredientList ingredient="Orange"/>
                     <RecentIngredientList ingredient="Apple"/>
                 </View>

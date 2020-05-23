@@ -5,9 +5,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import CartScreen from '../screens/CartScreen';
-import SearchScreen from '../screens/SearchScreen';
 import HeaderImageLogo from '../components/HeaderLogo.js';
-
+import StackNavigator from './StackNavigator';
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
@@ -15,8 +14,7 @@ export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  navigation.setOptions({ headerTitle: getHeaderTitle(route), headerRight: ()=> <HeaderImageLogo/> });
-
+  navigation.setOptions({headerTitle: getHeaderTitle(route), headerRight: ()=> <HeaderImageLogo/> });
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
@@ -29,7 +27,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Search"
-        component={SearchScreen}
+        component={StackNavigator}
         options={{
           title: 'Search',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
