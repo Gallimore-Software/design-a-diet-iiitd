@@ -4,16 +4,12 @@ import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/Deprecate
 
 export default function HeaderLogo() {
   return (
-    <Image style={styles.Image} source={require('../assets/images/Logo_Temp.png')}/>
+    // <Image style={styles.Image} source={require('../assets/images/Logo_Temp.png')}/>
+    <View />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
   Image: {
       width: 150,
       height: 55,

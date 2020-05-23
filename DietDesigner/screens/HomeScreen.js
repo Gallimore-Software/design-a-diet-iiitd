@@ -23,7 +23,7 @@ export default function HomeScreen() {
             {
               list.map((item)=> {
                 return (
-                  <View style={{marginLeft:10}}> 
+                  <View key={item} style={{marginLeft:10}}> 
                     <RecommendedBox  style={styles.scrollHorizontal} /> 
                     <View style={{paddingHorizontal: 10}}>
                       <Text style={styles.recommendedText}>Calories:</Text> 
