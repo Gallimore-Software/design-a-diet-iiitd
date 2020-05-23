@@ -14,9 +14,9 @@ Figma Link: https://www.figma.com/file/aXWr5NgxvxNFU7U3vwuxS0/Design-A-Diet?node
     - `http://localhost:3001/food/:query` GET
 
 3. Sample response
-    ```
+    `
     [
-  {
+    {
     "name": "72 proof creme de menthe Alcoholic beverage",
     "servings": 0,
     "nutrients": {
@@ -161,4 +161,4 @@ Figma Link: https://www.figma.com/file/aXWr5NgxvxNFU7U3vwuxS0/Design-A-Diet?node
     "calories": 231
   }
 ]
-    ```
+    `
