@@ -14,7 +14,7 @@ export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  navigation.setOptions({headerTitle: getHeaderTitle(route), headerRight: ()=> <HeaderImageLogo/> });
+  navigation.setOptions({headerTitle: getHeaderTitle(route), headerRight: ()=> <HeaderImageLogo/>, headerShown: showHeader(route)});
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
@@ -30,7 +30,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={StackNavigator}
         options={{
           title: 'Search',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
+          
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />
         }}
       />
       <BottomTab.Screen
@@ -65,5 +66,21 @@ function getHeaderTitle(route) {
       return 'Plan your Diet'
     case 'Cart':
       return 'Your cart'
+  }
+}
+
+
+function showHeader(route) {
+  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+
+  switch (routeName) {
+    case 'Home':
+      return true
+    case 'Search':
+      return false
+    case 'Diet':
+      return true
+    case 'Cart':
+      return true
   }
 }
