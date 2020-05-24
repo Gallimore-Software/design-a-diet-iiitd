@@ -7,7 +7,7 @@ import Quantity from '../components/IngredientInfoScreenComponents/Quantity';
 import Info from '../components/IngredientInfoScreenComponents/Info';
 import ButtonArea from '../components/IngredientInfoScreenComponents/ButtonArea'
 
-export default function IngredientInfoScreen() {
+export default function IngredientInfoScreen({navigation}) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="skyblue" barStyle="light-content"/>
@@ -15,7 +15,7 @@ export default function IngredientInfoScreen() {
       <IngredientImage/>
       <Quantity/>
       <Info/>
-      <ButtonArea/>
+      <ButtonArea navigation={navigation}/>
     </View>
   );
 }

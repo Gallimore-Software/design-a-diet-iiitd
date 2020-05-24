@@ -5,7 +5,7 @@ import CartItems from '../components/CartScreenComponents/CartItems';
 import Info from '../components/CartScreenComponents/Info';
 import ButtonArea from '../components/CartScreenComponents/ButtonArea'
 
-export default function CartScreen({props}) {
+export default function CartScreen() {
 
   return (
     <View style={styles.container}>

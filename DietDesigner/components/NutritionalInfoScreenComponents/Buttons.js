@@ -2,15 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
 
-export default function Button1(props) {
-  const onPressHandler = () => {
-    props.navigation.navigate('NutritionalInfoScreen');
-  }
+export default function Buttons() {
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={onPressHandler}>
+        <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>
-                See Full Nutritional Composition
+                Save For Later
+            </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+            <Text style={styles.text}>
+                Add to Cart
             </Text>
         </TouchableOpacity>
     </View>
@@ -24,14 +26,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     // backgroundColor: '#23313d',
-    alignSelf: 'center',
+    alignSelf: 'stretch',
     marginHorizontal: 14,
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
   },
   text: {
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',
-    width: 320,
+    width: 130,
     padding: 10,
   },
   button: {

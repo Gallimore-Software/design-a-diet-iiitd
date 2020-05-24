@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-na
 
 export default function Button1() {
 
-
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.button}>

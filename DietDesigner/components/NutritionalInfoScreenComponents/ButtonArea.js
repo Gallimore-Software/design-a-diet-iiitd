@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
-import Button1 from '../IngredientInfoScreenComponents/Button1';
-import Buttons from '../IngredientInfoScreenComponents/Buttons';
+import Button1 from '../NutritionalInfoScreenComponents/Button1';
+import Buttons from '../NutritionalInfoScreenComponents/Buttons';
 
 export default function ButtonArea(props) {
   return (
