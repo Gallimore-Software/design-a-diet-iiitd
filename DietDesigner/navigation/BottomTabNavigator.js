@@ -5,6 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import CartScreen from '../screens/CartScreen';
+import RecipeScreen from '../screens/RecipeScreen';
 import HeaderImageLogo from '../components/HeaderLogo.js';
 import StackNavigator from './StackNavigator';
 const BottomTab = createBottomTabNavigator();
@@ -36,7 +37,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Diet"
-        component={LinksScreen}
+        component={RecipeScreen}
         options={{
           title: 'Diets',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
