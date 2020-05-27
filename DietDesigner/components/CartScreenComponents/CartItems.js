@@ -10,7 +10,7 @@ export default function CartItems() {
             <ScrollView>
                 {iter.map((item) => {
                     return (
-                        <View style={styles.ingredientview}>
+                        <View key={item} style={styles.ingredientview}>
                             <Text style={styles.textbold}>
                                 Ingredient {item}
                             </Text>

@@ -1,14 +1,44 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {useState, useEffect} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-
-import { MonoText } from '../components/StyledText';
 import RecommendedBox from '../components/RecommendedBox';
 import MiddleNavBar from '../components/MiddleNavBar';
+import API from '../api'
+
+
+
 
 export default function HomeScreen() {
-  let list = [1,2,3,4,5,6,7,8,9]
+  const [recommendedFood, updateRecommendFood] = useState([]);
+  const [categorizedFood, updateCategorizeFood] = useState([]);
+  useEffect(()=>{
+    (async()=>{
+      const res = await API.getData('/ingredients')
+      const data = await res.data
+      updateRecommendFood(data)
+      updateCategorizeFood([...data.sort()])
+    })()
+  }, [])
+
+  let sortCategorizedFood = (sortByKey) => {
+    let arr = categorizedFood.sort((a, b) => (
+      parseFloat(a[sortByKey]) - parseFloat(b[sortByKey])
+      ))
+
+    
+    if (sortByKey==="name") {
+      categorizedFood.sort();
+    }
+    else if(sortByKey==="proteins") {
+      arr = [...arr]
+    }
+    else {
+      arr = [...arr.reverse()] 
+    }
+    updateCategorizeFood(arr)
+  }
 
 
   return (
@@ -21,15 +51,16 @@ export default function HomeScreen() {
       <View style={{paddingTop: 20, flex: 1}}>
         <ScrollView  horizontal={true}>
             {
-              list.map((item)=> {
+              recommendedFood.map((item, index)=> {
                 return (
-                  <View key={item} style={{marginLeft:10}}> 
-                    <RecommendedBox  style={styles.scrollHorizontal} /> 
+                  <View key={index} style={{marginLeft:10}}> 
+                    <RecommendedBox saveButton={true} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} style={styles.scrollHorizontal} /> 
                     <View style={{paddingHorizontal: 10}}>
-                      <Text style={styles.recommendedText}>Calories:</Text> 
-                      <Text style={styles.recommendedText}>Proteins:</Text> 
-                      <Text style={styles.recommendedText}>Carbs:</Text> 
-                      <Text style={styles.recommendedText}>Fats:</Text> 
+                    
+                      <Text style={styles.recommendedText}>Calories: {item.calories.toFixed(2)}</Text> 
+                      <Text style={styles.recommendedText}>Proteins: {item.proteins??0}</Text> 
+                      <Text style={styles.recommendedText}>Carbs: {item.carbohydrates.toFixed(2)}</Text> 
+                      <Text style={styles.recommendedText}>Fats: {item.fat.toFixed(2)}</Text> 
                     </View>
                     
                   </View>
@@ -41,14 +72,14 @@ export default function HomeScreen() {
         </ScrollView>
       </View>
       <View style={{flex: 1, marginTop: 20, marginBottom: 1}}>
-          <MiddleNavBar />
+          <MiddleNavBar updateCategorizeFood={sortCategorizedFood} />
 
           <ScrollView style={{paddingTop: 20, flex: 4}} horizontal={true}>
           {
-            list.map((item)=> {
+            categorizedFood.map((item, index)=> {
               return (
-                <View style={{marginLeft:10}}> 
-                  <RecommendedBox   /> 
+                <View key={index} style={{marginLeft:10}}> 
+                  <RecommendedBox  ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  /> 
                 </View>
               )
               

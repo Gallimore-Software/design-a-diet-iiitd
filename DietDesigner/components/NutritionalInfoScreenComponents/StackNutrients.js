@@ -14,6 +14,7 @@ export default function StackNutrients() {
             <Stack.Navigator initialRouteName='MajorNutrients' screenOptions={{
                 headerShown: false
             }} >
+                {/* alter the view using state */}
                 <Stack.Screen name='MajorNutrients' component={MajorNutrients} />
                 <Stack.Screen name='AllNutrients' component={AllNutrients} />
             </Stack.Navigator>

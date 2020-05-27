@@ -35,6 +35,28 @@ const foodRoutes = (app, fs) => {
 
         });
     })
+
+    // recommended ingredients
+    app.get('/ingredients', async (req, res)=>{
+
+        await fs.readFile(dataPath, 'utf8', (err, data) => {
+            if (err) {
+                throw err;
+            }
+
+            const foods = JSON.parse(data);
+            let key = [...foods.keys()];
+            let index = key.sort(() => Math.random() - Math.random()).slice(0, 10);
+            let response = [];
+            index.forEach((index)=>{
+                response.push(foods[index])
+            })
+
+            res.send((response));
+
+        });
+    })
+
 };
 
 module.exports = foodRoutes;

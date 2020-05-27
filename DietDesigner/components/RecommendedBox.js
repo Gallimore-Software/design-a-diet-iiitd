@@ -2,19 +2,33 @@ import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
+
+let saveButton = () => {
+  return (
+    <TouchableOpacity style={styles.button} >
+            <Text style={styles.text}>
+                +
+            </Text>
+        </TouchableOpacity>
+  )
+}
+
 
 export default function RecommendedBox(props) {
   return (
     <View style={styles.container}>
         <View style={styles.innerContainer} >
-
+          {
+            props.saveButton===true ? 
+            saveButton() : <Text/>
+          }
 
         </View>
 
         <View style={{marginTop: 10}} >
-            <Text>Ingredient</Text>
-            <Text style={{fontSize: 12, fontWeight: "100"}}>Quantity</Text>
+            <Text>{props.ingredientName?? "Ingredient"}</Text>
+            <Text style={{fontSize: 12, fontWeight: "100"}}>{!props.quantity?'':props.quantity}</Text>
         </View>
     </View>
   );
@@ -33,6 +47,20 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: '#C4C4C4',
         height: 120,
-        width: 140
-    }
+        width: 140,
+        padding: 10
+    },
+    button: {
+      backgroundColor: "green",
+      height: 30,
+      width: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 30,
+      alignSelf: 'flex-end',
+    },
+    text: { 
+      fontSize: 20,
+      color: 'white'
+     }
   });
