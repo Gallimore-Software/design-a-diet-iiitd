@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import RecommendedBox from '../components/RecommendedBox';
 import MiddleNavBar from '../components/MiddleNavBar';
 import API from '../api'
+import {storeData, retrieveData} from '../api/AsyncStorage'
 
 
 
@@ -19,6 +20,7 @@ export default function HomeScreen() {
       const data = await res.data
       updateRecommendFood(data)
       updateCategorizeFood([...data.sort()])
+      console.log("rendered")
     })()
   }, [])
 
@@ -41,26 +43,33 @@ export default function HomeScreen() {
   }
 
 
+
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20}}>
         <TouchableOpacity><Text style={[styles.textStyle, styles.textBold]}>Recommended</Text></TouchableOpacity>
-        <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity>
+        {/* <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity> */}
       </View>
 
       <View style={{paddingTop: 20, flex: 1}}>
         <ScrollView  horizontal={true}>
             {
               recommendedFood.map((item, index)=> {
+                let {name, calories, proteins, carbohydrates, fat} = item;
                 return (
                   <View key={index} style={{marginLeft:10}}> 
-                    <RecommendedBox saveButton={true} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} style={styles.scrollHorizontal} /> 
+                    <RecommendedBox 
+                    saveButton={true}
+                    saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat})}} 
+                    ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
+
+                    style={styles.scrollHorizontal} /> 
                     <View style={{paddingHorizontal: 10}}>
                     
-                      <Text style={styles.recommendedText}>Calories: {item.calories.toFixed(2)}</Text> 
-                      <Text style={styles.recommendedText}>Proteins: {item.proteins??0}</Text> 
-                      <Text style={styles.recommendedText}>Carbs: {item.carbohydrates.toFixed(2)}</Text> 
-                      <Text style={styles.recommendedText}>Fats: {item.fat.toFixed(2)}</Text> 
+                      <Text style={styles.recommendedText}>Calories: {calories.toFixed(2)}</Text> 
+                      <Text style={styles.recommendedText}>Proteins: {proteins??0}</Text> 
+                      <Text style={styles.recommendedText}>Carbs: {carbohydrates.toFixed(2)}</Text> 
+                      <Text style={styles.recommendedText}>Fats: {fat.toFixed(2)}</Text> 
                     </View>
                     
                   </View>

@@ -11,11 +11,11 @@ This class acts as a structure for the async storage manuplation.
         this.calories = calories;
     }
 
-    getName() {
+    getName= ()=> {
         return this.name;
     }
 
-    getNutrients() {
+    getNutrients= ()=> {
         return {
             carbs: this.carbs,
             fat: this.fat,
@@ -24,7 +24,7 @@ This class acts as a structure for the async storage manuplation.
         }
     }
 
-    getAll() {
+    getAll = ()=> {
         return {
             name: this.name,
             carbs: this.carbs,

@@ -1,12 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
 
-import Colors from '../constants/Colors';
-import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-let saveButton = () => {
+let saveButton = (clickFunction) => {
   return (
-    <TouchableOpacity style={styles.button} >
+    <TouchableOpacity style={styles.button}  onPress={clickFunction} >
             <Text style={styles.text}>
                 +
             </Text>
@@ -21,7 +20,7 @@ export default function RecommendedBox(props) {
         <View style={styles.innerContainer} >
           {
             props.saveButton===true ? 
-            saveButton() : <Text/>
+            saveButton(props.saveFunction) : <Text/>
           }
 
         </View>

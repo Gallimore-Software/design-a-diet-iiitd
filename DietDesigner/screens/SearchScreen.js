@@ -5,10 +5,22 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import RecommendedBox from '../components/RecommendedBox';
 import RecentIngredientList from '../components/RecentIngredientList';
 import { ReactButton, ScrollView } from 'react-native-gesture-handler';
+import {useState, useEffect} from 'react';
+
+import {retrieveData} from '../api/AsyncStorage';
 
 
 export default function SearchScreen({navigation}) {
     let list = [1,2,3,4,5,6,7,8,9]
+
+    const [savedItems, useSavedItems] = useState([]);
+    useEffect(()=>{
+        (async () => {
+            const asyncSavedItems = await retrieveData('cart');
+            useSavedItems([...asyncSavedItems]);
+            // console.log(asyncSavedItems);
+        })()
+    })
 
     const onPressHandler = (name) => {
         navigation.navigate('IngredientInfoScreen', {ingredientName: name??''});
@@ -56,15 +68,15 @@ export default function SearchScreen({navigation}) {
                 <View style={{paddingTop: 20, flex: 1}}>
                     <ScrollView  horizontal={true}>
                         {
-                        list.map((item)=> {
+                        savedItems.map((item, index)=> {
                             return (
-                            <View key={item} style={{marginLeft:10}}> 
-                                <RecommendedBox  style={styles.scrollHorizontal} /> 
+                            <View key={index} style={{marginLeft:10}}> 
+                                <RecommendedBox ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
                                 <View style={{paddingHorizontal: 10}}>
-                                <Text style={styles.recommendedText}>Calories:</Text> 
-                                <Text style={styles.recommendedText}>Proteins:</Text> 
-                                <Text style={styles.recommendedText}>Carbs:</Text> 
-                                <Text style={styles.recommendedText}>Fats:</Text> 
+                                <Text style={styles.recommendedText}>Calories: {item.calories}</Text> 
+                                <Text style={styles.recommendedText}>Proteins: {item.proteins??0}</Text> 
+                                <Text style={styles.recommendedText}>Carbs: {item.carbohydrates}</Text> 
+                                <Text style={styles.recommendedText}>Fats: {item.fat??0}</Text> 
                                 </View>
                                 
                             </View>
