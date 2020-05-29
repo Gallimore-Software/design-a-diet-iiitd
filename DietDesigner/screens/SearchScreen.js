@@ -22,8 +22,8 @@ export default function SearchScreen({navigation}) {
         })()
     })
 
-    const onPressHandler = (name) => {
-        navigation.navigate('IngredientInfoScreen', {ingredientName: name??''});
+    const onPressHandler = (name, carbohydrates, proteins, fats) => {
+        navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
       }
 
     return (
@@ -45,13 +45,13 @@ export default function SearchScreen({navigation}) {
                     <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity>
                 </View>
                 <View style={ { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingTop: 10 }}>
-                    <TouchableOpacity onPress={()=>onPressHandler("Potato")}>                    
+                    <TouchableOpacity onPress={()=>onPressHandler("Potato", 200, 100, 50)}>                    
                         <RecentIngredientList ingredient="Potato"/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>onPressHandler("Orange")}>                    
+                    <TouchableOpacity onPress={()=>onPressHandler("Orange", 150, 30, 27)}>                    
                         <RecentIngredientList ingredient="Orange"/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>onPressHandler("Apple")}>                    
+                    <TouchableOpacity onPress={()=>onPressHandler("Apple", 300, 60, 12)}>                    
                         <RecentIngredientList ingredient="Apple"/>
                     </TouchableOpacity>
                 </View>

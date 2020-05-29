@@ -15,7 +15,7 @@ export default function IngredientInfoScreen({navigation, route}) {
       <IngredientName name={route.params.ingredientName}/>
       <IngredientImage/>
       <Quantity/>
-      <Info/>
+      <Info carbohydrates={route.params.carbohydrates} proteins={route.params.proteins} fats={route.params.fats}/>
   
       <ButtonArea navigation={navigation}/>
     </View>

@@ -1,8 +1,44 @@
 import * as React from 'react';
-import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, Dimensions} from 'react-native';
+import { PieChart } from 'react-native-chart-kit';
 
+const {width} = Dimensions.get('window');
+const size = width-32;
 
 export default function Info() {
+  const chartconfig = {
+    backgroundGradientFrom: "#1E2923",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#08130D",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false // optional
+  };
+  const data = [
+    {
+      name: "Carbohydrates",
+      amount: 1400,
+      color: "#33ccff",
+      legendFontColor: "#1affff",
+      legendFontSize: 13
+    },
+    {
+      name: "Fats",
+      amount: 360,
+      color: "#ff6600",
+      legendFontColor: "#ffa366",
+      legendFontSize: 13
+    },
+    {
+      name: "Proteins",
+      amount: 567,
+      color: "#33ff33",
+      legendFontColor: "#66ff66",
+      legendFontSize: 13
+    }
+  ];
   return (
     <View style={styles.container}>
       <View marginLeft={15} marginTop={15}>
@@ -11,7 +47,16 @@ export default function Info() {
         </Text>
       </View>
       <View>
-        <Image style = {styles.image} source={require('../../assets/images/Logistics_temp.jpeg')}/>
+      <PieChart
+            data={data}
+            width={size}
+            height={220}
+            chartConfig={chartconfig}
+            accessor="amount"
+            backgroundColor="transparent"
+            paddingLeft="15"
+            absolute
+            />
       </View>
     </View>
   );
