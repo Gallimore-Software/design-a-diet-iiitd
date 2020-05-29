@@ -1,31 +1,83 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Picker} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 export default function AllNutrients({navigation}) {
 
+    const [nutrientlist, setnutrientlist] = useState([
+        {nutrient: 'Calcium', amount: '800mg'},
+        {nutrient: 'Tyrosine', amount: '700mg'},
+        {nutrient: 'Vitamin C', amount: '600mg'},
+        {nutrient: 'Vitamin D', amount: '500mg'},
+        {nutrient: 'Vitamin E', amount: '400mg'},
+        {nutrient: 'Vitamin F', amount: '300mg'},
+        {nutrient: 'Vitamin G', amount: '300mg'},
+        {nutrient: 'Phosphorus', amount: '200mg'},
+
+    ]);
+
     const [selectedValue, setSelectedValue] = useState("Sugars");
 
-    const iter = [
-        {nutrient: 'Copper', amount: '800mg'},
-        {nutrient: 'Ash', amount: '700mg'},
-        {nutrient: 'Zn', amount: '600mg'},
-        {nutrient: 'Sucrose', amount: '500mg'},
-        {nutrient: 'Fructose', amount: '400mg'},
-        {nutrient: 'Lactose', amount: '300mg'},
-        {nutrient: 'Vitamin G', amount: '300mg'},
-        {nutrient: 'Calcium', amount: '200mg'},
-        {nutrient: 'HCFS', amount: '150mg'},
-        {nutrient: 'Vitamin A', amount: '100mg'},
-        {nutrient: 'Vitamin C', amount: '20mg'},
-        {nutrient: 'Vitamin D', amount: '10mg'},
-        {nutrient: 'Vitamin E', amount: '15mg'},
+    const [tab2, settab2] = useState({
+        color: '#908989'
+    });
+    const [tab1, settab1] = useState({
+        fontWeight: 'bold',
+        textDecorationLine: 'underline'
+    });
 
-    ]
+    const [toggle, settoggle] = useState(false);
 
     const onPressHandler = () => {
-        navigation.navigate('MajorNutrients');
+        settab2({color: '#908989'});
+
+        settab1({
+            fontWeight: 'bold',
+            textDecorationLine: 'underline'
+        });
+        
+        setnutrientlist([
+            {nutrient: 'Calcium', amount: '800mg'},
+            {nutrient: 'Tyrosine', amount: '700mg'},
+            {nutrient: 'Vitamin C', amount: '600mg'},
+            {nutrient: 'Vitamin D', amount: '500mg'},
+            {nutrient: 'Vitamin E', amount: '400mg'},
+            {nutrient: 'Vitamin F', amount: '300mg'},
+            {nutrient: 'Vitamin G', amount: '300mg'},
+            {nutrient: 'Phosphorus', amount: '200mg'},
+        ])
+
+        settoggle(false);
+
+    }
+    const onPressHandler2 = () => {
+        settab1({color: '#908989'});
+
+        settab2({
+            fontWeight: 'bold',
+            textDecorationLine: 'underline'
+        });
+
+        setnutrientlist([
+            {nutrient: 'Copper', amount: '800mg'},
+            {nutrient: 'Ash', amount: '700mg'},
+            {nutrient: 'Zn', amount: '600mg'},
+            {nutrient: 'Sucrose', amount: '500mg'},
+            {nutrient: 'Fructose', amount: '400mg'},
+            {nutrient: 'Lactose', amount: '300mg'},
+            {nutrient: 'Vitamin G', amount: '300mg'},
+            {nutrient: 'Calcium', amount: '200mg'},
+            {nutrient: 'HCFS', amount: '150mg'},
+            {nutrient: 'Vitamin A', amount: '100mg'},
+            {nutrient: 'Vitamin C', amount: '20mg'},
+            {nutrient: 'Vitamin D', amount: '10mg'},
+            {nutrient: 'Vitamin E', amount: '15mg'},
+        ])
+
+        settoggle(true);
+
+
     }
 
 
@@ -35,18 +87,18 @@ export default function AllNutrients({navigation}) {
         <View style={styles.container}>
             <View style={styles.tabbar}>
             <TouchableOpacity onPress={onPressHandler}>
-                <Text style={styles.notselected}>
+                <Text style={tab1}>
                     Composition
                 </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-                <Text style={styles.selected}>
+            <TouchableOpacity onPress={onPressHandler2}>
+                <Text style={tab2}>
                     Others
                 </Text>
             </TouchableOpacity>
             </View>
-            <View style={{backgroundColor:'#fff', width: 260, borderWidth: 1, borderColor: 'black', marginTop: 5,}}>
-            <Picker style={{width: 257}} mode='dropdown' selectedValue={selectedValue} onValueChange={(itemValue, itemPosition) => setSelectedValue(itemValue)}>
+            <View style={{backgroundColor:'#fff', width: 260, marginTop: 5,}}>
+            <Picker enabled={toggle} style={{width: 257}} mode='dropdown' selectedValue={selectedValue} onValueChange={(itemValue, itemPosition) => setSelectedValue(itemValue)}>
                 <Picker.item label='Sugars' value='Sugars' />
                 <Picker.item label='Minerals' value='Minerals' />
                 <Picker.item label='Vitamins' value='Vitamins' />
@@ -57,7 +109,7 @@ export default function AllNutrients({navigation}) {
             </Picker>
             </View>
             <ScrollView>
-                {iter.map((item) => {
+                {nutrientlist.map((item) => {
                     return (
                         <View flexDirection='row' justifyContent='space-evenly'>
                             <View flexDirection='row' alignItems='center'>
@@ -81,8 +133,6 @@ styles = StyleSheet.create({
     container: {
         flex: 4,
         elevation: 2,
-        // backgroundColor: 'blue',
-        
     },
     Bold: {
         fontWeight: 'bold',
@@ -95,12 +145,5 @@ styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
 
-    },
-    selected: {
-        fontWeight: 'bold',
-        textDecorationLine: 'underline'
-    },
-    notselected: {
-        color: '#908989',
     },
 })

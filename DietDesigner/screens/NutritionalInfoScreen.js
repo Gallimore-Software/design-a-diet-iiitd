@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 import IngredientName from '../components/NutritionalInfoScreenComponents/IngredientName';
 import Quantity from '../components/NutritionalInfoScreenComponents/Quantity';
 import ButtonArea from '../components/NutritionalInfoScreenComponents/ButtonArea';
-import StackNutrients from '../components/NutritionalInfoScreenComponents/StackNutrients';
+import AllNutrients from '../components/NutritionalInfoScreenComponents/AllNutrients';
 
 export default function NutritionalInfoScreen({navigation}) {
 
@@ -12,7 +12,7 @@ export default function NutritionalInfoScreen({navigation}) {
         <View style={styles.container}>
             <IngredientName/>
             <Quantity/>
-            <StackNutrients/>
+            <AllNutrients/>
             <ButtonArea navigation={navigation}/>
         </View>
     );
