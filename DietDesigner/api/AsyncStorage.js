@@ -34,7 +34,7 @@ let clearData = async(type) => {
 
 
 let retrieveData = async (type) => {
-    // cart/witshlist
+    // cart/wishlist
     try {
         const value = await AsyncStorage.getItem(type);
         if (value !== null) {
