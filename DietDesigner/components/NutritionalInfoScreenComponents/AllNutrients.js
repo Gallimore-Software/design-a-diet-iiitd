@@ -1,9 +1,22 @@
 import * as React from 'react';
 import { useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Picker} from 'react-native';
+import {ActionSheetIOS, Button, View, Text, StyleSheet, TouchableOpacity, ScrollView, Picker, DatePickerAndroid, Platform} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import {Dropdown} from 'react-native-material-dropdown';
 
 export default function AllNutrients({navigation}) {
+
+    const [pickerLabel, setpickerLabel] = useState('Major Nutrients');
+  
+    const pickerdata =  [
+        { value: 'Sugars'},
+        { value: 'Minerals'},
+        { value: 'Vitamins'},
+        { value: 'Essential Amino Acids'},
+        { value: 'Non Essential Amino Acids'},
+        { value: 'Essential Fatty Acids'},
+        { value: 'Miscellaneous'},
+    ];
 
     const [nutrientlist, setnutrientlist] = useState([
         {nutrient: 'Calcium', amount: '800mg'},
@@ -27,7 +40,7 @@ export default function AllNutrients({navigation}) {
         textDecorationLine: 'underline'
     });
 
-    const [toggle, settoggle] = useState(false);
+    const [toggle, settoggle] = useState(true);
 
     const onPressHandler = () => {
         settab2({color: '#908989'});
@@ -48,7 +61,11 @@ export default function AllNutrients({navigation}) {
             {nutrient: 'Phosphorus', amount: '200mg'},
         ])
 
-        settoggle(false);
+        settoggle(true);
+
+        setSelectedValue('');
+
+        setpickerLabel('   Major Nutrients');
 
     }
     const onPressHandler2 = () => {
@@ -75,7 +92,11 @@ export default function AllNutrients({navigation}) {
             {nutrient: 'Vitamin E', amount: '15mg'},
         ])
 
-        settoggle(true);
+        settoggle(false);
+
+        setSelectedValue('Sugars');
+
+        setpickerLabel('  Nutrients Category');
 
 
     }
@@ -98,15 +119,7 @@ export default function AllNutrients({navigation}) {
             </TouchableOpacity>
             </View>
             <View style={{backgroundColor:'#fff', width: 260, marginTop: 5,}}>
-            <Picker enabled={toggle} style={{width: 257}} mode='dropdown' selectedValue={selectedValue} onValueChange={(itemValue, itemPosition) => setSelectedValue(itemValue)}>
-                <Picker.item label='Sugars' value='Sugars' />
-                <Picker.item label='Minerals' value='Minerals' />
-                <Picker.item label='Vitamins' value='Vitamins' />
-                <Picker.item label='Essential Amino Acids' value='Essential Amino Acids' />
-                <Picker.item label='Non Essential Amino Acids' value='Non Essential Amino Acids' />
-                <Picker.item label='Essential Fatty Acids' value='Essential Fatty Acids' />
-                <Picker.item label='Miscellaneous' value='Miscellaneous' />
-            </Picker>
+                <Dropdown disabled={toggle} style={styles.picker} data={pickerdata} value={selectedValue} label={pickerLabel}  onChangeText={(value, index, data) => setSelectedValue(value)}/>
             </View>
             <ScrollView>
                 {nutrientlist.map((item) => {
@@ -146,4 +159,8 @@ styles = StyleSheet.create({
         justifyContent: 'space-evenly',
 
     },
+    picker: {
+        marginLeft: 10,
+
+    }
 })
