@@ -6,7 +6,7 @@ import Button1 from './Button1';
 export default function ButtonArea() {
   return (
     <View style={styles.container}>
-        <Button1 />
+ 
     </View>
   );
 }
