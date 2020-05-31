@@ -2,8 +2,7 @@ import React from 'react';
 import {Dimensions, StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity} from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
 
-const {width} = Dimensions.get('window');
-const size = width-32;
+const {width, height} = Dimensions.get('window');
 
 export default function Info(props) {
   const chartconfig = {
@@ -43,12 +42,11 @@ export default function Info(props) {
     <View style={styles.container}>
       <PieChart
             data={data}
-            width={size}
-            height={220}
+            width={width-35}
+            height={height/4}
             chartConfig={chartconfig}
             accessor="amount"
             backgroundColor="transparent"
-            paddingLeft="15"
             absolute
             />
     </View>
