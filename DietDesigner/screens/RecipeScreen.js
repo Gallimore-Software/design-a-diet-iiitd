@@ -35,7 +35,8 @@ export default function HomeScreen() {
             }
             
         </ScrollView>
-        <ButtonArea/>
+      <View style={{height:20}} />
+        {/* <ButtonArea/> */}
       </View>
       <View style={{flex: 1, marginTop: 20, marginBottom: 1}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20}}>

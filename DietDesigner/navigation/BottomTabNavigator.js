@@ -2,12 +2,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import CartScreen from '../screens/CartScreen';
 import RecipeScreen from '../screens/RecipeScreen';
 import HeaderImageLogo from '../components/HeaderLogo.js';
-import StackNavigator from './StackNavigator';
+import SearchScreenStackNavigator from './SearchScreenStackNavigator';
+import HomeScreenStackNavigator from './HomeScreenStackNavigator';
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
@@ -20,7 +20,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeScreenStackNavigator}
         options={{
           title: 'Home',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
@@ -28,7 +28,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Search"
-        component={StackNavigator}
+        component={SearchScreenStackNavigator}
         options={{
           title: 'Search',
           
@@ -76,7 +76,7 @@ function showHeader(route) {
 
   switch (routeName) {
     case 'Home':
-      return true
+      return false
     case 'Search':
       return false
     case 'Diet':

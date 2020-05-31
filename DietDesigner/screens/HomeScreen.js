@@ -11,7 +11,7 @@ import {storeData, retrieveData} from '../api/AsyncStorage'
 
 
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation, routes}) {
   const [recommendedFood, updateRecommendFood] = useState([]);
   const [categorizedFood, updateCategorizeFood] = useState([]);
   useEffect(()=>{
@@ -42,6 +42,14 @@ export default function HomeScreen() {
     updateCategorizeFood(arr)
   }
 
+  const navigateScreen = (name, carbohydrates, proteins, fats) => {
+    // name, carbohydrates, proteins, fats
+    console.log(name, carbohydrates, proteins, fats)
+    // navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
+    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'',carbohydrates:carbohydrates??100, proteins:50, fats: 20});
+  }
+
+
 
 
   return (
@@ -62,7 +70,7 @@ export default function HomeScreen() {
                     saveButton={true}
                     saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat})}} 
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
-
+                    navigateScreen={()=>navigateScreen(name, carbohydrates.toFixed(2), proteins, fat.toFixed(2))}
                     style={styles.scrollHorizontal} /> 
                     <View style={{paddingHorizontal: 10}}>
                     
@@ -88,7 +96,9 @@ export default function HomeScreen() {
             categorizedFood.map((item, index)=> {
               return (
                 <View key={index} style={{marginLeft:10}}> 
-                  <RecommendedBox  ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  /> 
+                  <RecommendedBox  ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 
+                  navigateScreen={()=>navigateScreen(item.name, item.carbohydrates.toFixed(2), item.proteins, item.fat.toFixed(2))}
+                  /> 
                 </View>
               )
               

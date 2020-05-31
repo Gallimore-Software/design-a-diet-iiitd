@@ -1,17 +1,15 @@
 import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import RecommendedBox from '../components/RecommendedBox';
 import RecentIngredientList from '../components/RecentIngredientList';
-import { ReactButton, ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
 
-import {retrieveData} from '../api/AsyncStorage';
+import {retrieveData, clearData} from '../api/AsyncStorage';
 
 
 export default function SearchScreen({navigation}) {
-    let list = [1,2,3,4,5,6,7,8,9]
 
     const [savedItems, useSavedItems] = useState([]);
     useEffect(()=>{
@@ -22,7 +20,7 @@ export default function SearchScreen({navigation}) {
         })()
     })
 
-    const onPressHandler = (name, carbohydrates, proteins, fats) => {
+    const navigateScreen = (name, carbohydrates, proteins, fats) => {
         navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
       }
 
@@ -45,13 +43,13 @@ export default function SearchScreen({navigation}) {
                     <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity>
                 </View>
                 <View style={ { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingTop: 10 }}>
-                    <TouchableOpacity onPress={()=>onPressHandler("Potato", 200, 100, 50)}>                    
+                    <TouchableOpacity onPress={()=>navigateScreen("Potato", 200, 100, 50)}>                    
                         <RecentIngredientList ingredient="Potato"/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>onPressHandler("Orange", 150, 30, 27)}>                    
+                    <TouchableOpacity onPress={()=>navigateScreen("Orange", 150, 30, 27)}>                    
                         <RecentIngredientList ingredient="Orange"/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>onPressHandler("Apple", 300, 60, 12)}>                    
+                    <TouchableOpacity onPress={()=>navigateScreen("Apple", 300, 60, 12)}>                    
                         <RecentIngredientList ingredient="Apple"/>
                     </TouchableOpacity>
                 </View>
@@ -62,7 +60,7 @@ export default function SearchScreen({navigation}) {
             <View style={{flex:3}}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20}}>
                     <TouchableOpacity><Text style={[styles.textStyle, styles.textBold]}>Saved</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{clearData('cart')}}><Text style={[styles.textStyle,styles.textMuted]}>Clear All</Text></TouchableOpacity>
                 </View>
 
                 <View style={{paddingTop: 20, flex: 1}}>

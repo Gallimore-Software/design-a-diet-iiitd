@@ -16,20 +16,22 @@ let saveButton = (clickFunction) => {
 
 export default function RecommendedBox(props) {
   return (
-    <View style={styles.container}>
-        <View style={styles.innerContainer} >
-          {
-            props.saveButton===true ? 
-            saveButton(props.saveFunction) : <Text/>
-          }
+    <View style={styles.container} >
+        <TouchableOpacity onPress={props.navigateScreen}>
+            <View style={styles.innerContainer} >
+              {
+                props.saveButton===true ? 
+                saveButton(props.saveFunction) : <Text/>
+              }
 
-        </View>
+            </View>
 
-        <View style={{marginTop: 10}} >
-            <Text>{props.ingredientName?? "Ingredient"}</Text>
-            <Text style={{fontSize: 12, fontWeight: "100"}}>{!props.quantity?'':props.quantity}</Text>
-        </View>
-    </View>
+            <View style={{marginTop: 10}} >
+                <Text>{props.ingredientName?? "Ingredient"}</Text>
+                <Text style={{fontSize: 12, fontWeight: "100"}}>{!props.quantity?'':props.quantity}</Text>
+            </View>
+        </TouchableOpacity>
+      </View>
   );
 }
 

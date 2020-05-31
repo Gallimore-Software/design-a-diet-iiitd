@@ -28,6 +28,10 @@ let storeData = async (type, object) => {
     }
 };
 
+let clearData = async(type) => {
+    AsyncStorage.removeItem(type);
+}; 
+
 
 let retrieveData = async (type) => {
     // cart/witshlist
@@ -47,4 +51,4 @@ let retrieveData = async (type) => {
     }
 };
 
-export {retrieveData, storeData};
+export {retrieveData, storeData, clearData};
