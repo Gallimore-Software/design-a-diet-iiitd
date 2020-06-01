@@ -6,7 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 import RecommendedBox from '../components/RecommendedBox';
 import MiddleNavBar from '../components/MiddleNavBar';
-import ButtonArea from '../components/ButtonArea'
+//import ButtonArea from '../components/ButtonArea'
 
 export default function HomeScreen() {
   let list = [1,2,3,4,5,6,7,8,9]

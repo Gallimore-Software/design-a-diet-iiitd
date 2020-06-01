@@ -5,7 +5,7 @@ import RecommendedBox from '../components/RecommendedBox';
 import RecentIngredientList from '../components/RecentIngredientList';
 import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
-import ButtonArea from '../components/ButtonArea'
+import ButtonArea from '../components/SearchComponents/ButtonArea'
 import {retrieveData, clearData} from '../api/AsyncStorage';
 
 
