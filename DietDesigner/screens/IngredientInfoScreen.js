@@ -8,7 +8,6 @@ import Info from '../components/IngredientInfoScreenComponents/Info';
 import ButtonArea from '../components/IngredientInfoScreenComponents/ButtonArea'
 
 export default function IngredientInfoScreen({navigation, route}) {
-  
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="skyblue" barStyle="light-content"/>
@@ -17,7 +16,7 @@ export default function IngredientInfoScreen({navigation, route}) {
       <Quantity/>
       <Info carbohydrates={route.params.carbohydrates} proteins={route.params.proteins} fats={route.params.fats}/>
   
-      <ButtonArea navigation={navigation}/>
+      <ButtonArea navigation={navigation} nutrients={route.params.nutrients} name={route.params.ingredientName}/>
     </View>
   );
 }

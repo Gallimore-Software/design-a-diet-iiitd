@@ -15,24 +15,25 @@ export default function Info(props) {
     barPercentage: 0.5,
     useShadowColorFromDataset: false // optional
   };
+  console.log(props.carbohydrates, props.fats, props.proteins);
   const data = [
     {
       name: "Carbohydrates",
-      amount: props.carbohydrates,
+      amount: Math.round(props.carbohydrates),
       color: "#33ccff",
       legendFontColor: "#1affff",
       legendFontSize: 13
     },
     {
       name: "Fats",
-      amount: props.fats,
+      amount: Math.round(props.fats),
       color: "#ff6600",
       legendFontColor: "#ffa366",
       legendFontSize: 13
     },
     {
       name: "Proteins",
-      amount: props.proteins,
+      amount: Math.round(props.proteins),
       color: "#33ff33",
       legendFontColor: "#66ff66",
       legendFontSize: 13

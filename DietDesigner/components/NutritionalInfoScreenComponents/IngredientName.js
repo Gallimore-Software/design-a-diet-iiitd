@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
 
-export default function Header() {
+export default function Header(props) {
   return (
     <View style={styles.container}>
         <Text style={styles.text}>
-            Potato 1
+            {props.name}
         </Text>
     </View>
   );

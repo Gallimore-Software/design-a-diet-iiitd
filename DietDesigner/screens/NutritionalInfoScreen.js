@@ -6,13 +6,13 @@ import Quantity from '../components/NutritionalInfoScreenComponents/Quantity';
 import ButtonArea from '../components/NutritionalInfoScreenComponents/ButtonArea';
 import AllNutrients from '../components/NutritionalInfoScreenComponents/AllNutrients';
 
-export default function NutritionalInfoScreen({navigation}) {
+export default function NutritionalInfoScreen({navigation, route}) {
 
     return (
         <View style={styles.container}>
-            <IngredientName/>
+            <IngredientName name={route.params.name}/>
             <Quantity/>
-            <AllNutrients/>
+            <AllNutrients nutrients={route.params.nutrients}/>
             <ButtonArea navigation={navigation}/>
         </View>
     );

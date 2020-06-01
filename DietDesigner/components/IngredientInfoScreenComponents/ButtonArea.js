@@ -7,7 +7,7 @@ import Buttons from '../IngredientInfoScreenComponents/Buttons';
 export default function ButtonArea(props) {
   return (
     <View style={styles.container}>
-        <Button1 navigation={props.navigation}/>
+        <Button1 navigation={props.navigation} nutrients={props.nutrients} name={props.name}/>
         <Buttons/>
     </View>
   );
