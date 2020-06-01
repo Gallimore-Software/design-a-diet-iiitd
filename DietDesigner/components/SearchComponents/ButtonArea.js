@@ -2,10 +2,10 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
 import Button1 from './Button1';
-export default function ButtonArea() {
+export default function ButtonArea(props) {
   return (
     <View style={styles.container}>
-      <Button1 />
+      <Button1 navigation={props.navigation}/>
     </View>
   );
 }

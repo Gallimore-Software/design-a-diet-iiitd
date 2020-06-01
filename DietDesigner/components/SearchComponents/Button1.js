@@ -2,13 +2,15 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
 
-export default function Button1() {
-
+export default function Button1(props) {
+const onPressHandler = () => {
+    props.navigation.navigate('SearchLink');
+  }
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onPressHandler}>
             <Text style={styles.text}>
-                What's you ingredient?
+                What's you ingredient
             </Text>
         </TouchableOpacity>
     </View>
@@ -32,7 +34,12 @@ const styles = StyleSheet.create({
     width: 320,
     padding: 0,
   },
-  
+  button: {
+    alignSelf: 'center',
+    borderRadius: 25,
+   // backgroundColor: '#23313d',
+    textAlign: 'center',
+  }
 
 
   

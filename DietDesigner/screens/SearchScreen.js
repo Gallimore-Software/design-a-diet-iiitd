@@ -27,8 +27,8 @@ export default function SearchScreen({navigation}) {
     return (
         <View style={{flex: 1, backgroundColor: '#ffffff'}}>
             <View style={{ borderWidth: 1, flexDirection: 'row'}}>
-                <Ionicons name="ios-search" size={20}/>
-                 { <ButtonArea/> }
+                <Ionicons name="ios-search" size={25}/>
+                 { <ButtonArea navigation={navigation}/> }
                 
             </View>
 
