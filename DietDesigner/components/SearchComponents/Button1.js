@@ -11,6 +11,7 @@ const onPressHandler = () => {
         <TouchableOpacity style={styles.button} onPress={onPressHandler}>
             <Text style={styles.text}>
                 What's you ingredient
+
             </Text>
         </TouchableOpacity>
     </View>
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: 320,
     padding: 0,
+    color:"grey"
   },
   button: {
     alignSelf: 'center',
