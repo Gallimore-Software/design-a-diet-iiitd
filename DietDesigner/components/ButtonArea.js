@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
-import Button1 from './Button1';
 
 export default function ButtonArea() {
   return (
