@@ -7,11 +7,6 @@ export default function Buttons() {
     <View style={styles.container}>
         <TouchableOpacity style={styles.button}>
             <Text style={styles.text}>
-                Save For Later
-            </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>
                 Add to Cart
             </Text>
         </TouchableOpacity>
@@ -28,8 +23,8 @@ const styles = StyleSheet.create({
     // backgroundColor: '#23313d',
     alignSelf: 'stretch',
     marginHorizontal: 14,
-    justifyContent: 'space-between',
-    alignContent: 'space-between',
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   text: {
     fontWeight: 'bold',
