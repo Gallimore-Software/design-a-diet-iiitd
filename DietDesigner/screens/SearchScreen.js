@@ -5,7 +5,7 @@ import RecommendedBox from '../components/RecommendedBox';
 import RecentIngredientList from '../components/RecentIngredientList';
 import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
-
+import ButtonArea from '../components/SearchComponents/ButtonArea'
 import {retrieveData, clearData} from '../api/AsyncStorage';
 
 
@@ -27,13 +27,9 @@ export default function SearchScreen({navigation}) {
     return (
         <View style={{flex: 1, backgroundColor: '#ffffff'}}>
             <View style={{ borderWidth: 1, flexDirection: 'row'}}>
-                <Ionicons name="ios-search" size={20}/>
-                <TextInput
-                    placeholder="What's your Ingredient?"
-                    placeholderTextColor="grey"
-                    style={{flex: 1, fontWeight: '700' }}
-                    onSubmitEditing={()=>{console.log("Hello World")}}
-                />
+                <Ionicons name="ios-search" size={25}/>
+                 { <ButtonArea navigation={navigation}/> }
+                
             </View>
 
 

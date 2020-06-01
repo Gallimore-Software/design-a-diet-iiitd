@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SearchScreen from '../screens/SearchScreen';
 import IngredientInfoScreen from '../screens/IngredientInfoScreen';
 import NutritionalInfoScreen from '../screens/NutritionalInfoScreen';
-
+import SearchLink from '../screens/SearchLink';
 const Stack = createStackNavigator();
 
 export default function SearchScreenStackNavigator() {
@@ -16,6 +16,7 @@ export default function SearchScreenStackNavigator() {
             <Stack.Screen name='Search for the Ingredients' component={SearchScreen} />
             <Stack.Screen name='IngredientInfoScreen' component={IngredientInfoScreen} />
             <Stack.Screen name='NutritionalInfoScreen' component={NutritionalInfoScreen} />
+            <Stack.Screen name='SearchLink' component={SearchLink} />
         </Stack.Navigator>
     )
 }
