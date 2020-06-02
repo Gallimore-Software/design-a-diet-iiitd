@@ -17,7 +17,11 @@ let saveButton = (clickFunction) => {
 export default function RecommendedBox(props) {
   return (
     <View style={styles.container} >
-        <TouchableOpacity onPress={props.navigateScreen}>
+        <TouchableOpacity onPress={() => {
+          props.navigateScreen();
+          props.recentFunction();
+
+        }}>
             <View style={styles.innerContainer} >
               {
                 props.saveButton===true ? 

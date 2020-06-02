@@ -6,22 +6,27 @@ import RecentIngredientList from '../components/RecentIngredientList';
 import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
 import ButtonArea from '../components/SearchComponents/ButtonArea'
-import {retrieveData, clearData} from '../api/AsyncStorage';
+import {retrieveData, clearData, storeData} from '../api/AsyncStorage';
 
 
 export default function SearchScreen({navigation}) {
 
     const [savedItems, useSavedItems] = useState([]);
+    const [recentItems, useRecentItems] = useState([]);
     useEffect(()=>{
         (async () => {
             const asyncSavedItems = await retrieveData('cart');
+            // const asyncRecentItems = await retrieveData('recent');
             useSavedItems([...asyncSavedItems]);
+            //2 statements slowing down dapp
             // console.log(asyncSavedItems);
+            // useRecentItems([...asyncRecentItems]);
+            clearData('recent');
         })()
     })
 
-    const navigateScreen = (name, carbohydrates, proteins, fats, nutrients) => {
-        navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients});
+    const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients) => {
+        navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients});
       }
 
     return (
@@ -39,15 +44,21 @@ export default function SearchScreen({navigation}) {
                     <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity>
                 </View>
                 <View style={ { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingTop: 10 }}>
-                    <TouchableOpacity onPress={()=>navigateScreen("Potato", 200, 100, 50)}>                    
+                    {/* <TouchableOpacity onPress={()=>navigateScreen("Potato", 200, 100, 50)}>                    
                         <RecentIngredientList ingredient="Potato"/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>navigateScreen("Orange", 150, 30, 27)}>                    
                         <RecentIngredientList ingredient="Orange"/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>navigateScreen("Apple", 300, 60, 12)}>                    
-                        <RecentIngredientList ingredient="Apple"/>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
+                    {recentItems.map((item, index) => {
+                        let {name, calories, proteins, carbohydrates, fats, nutrients} = item;
+                        return (
+                            <TouchableOpacity onPress={()=>navigateScreen(name, calories, carbohydrates, proteins, fats, nutrients)}>                    
+                                <RecentIngredientList ingredient={item.name.split(' ').slice(-2).join(' ').toUpperCase()}/>
+                            </TouchableOpacity>
+                        )
+                    })}
+                    
                 </View>
                 
             </View>
@@ -66,7 +77,7 @@ export default function SearchScreen({navigation}) {
                             let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
                             return (
                             <View key={index} style={{marginLeft:10}}> 
-                                <RecommendedBox navigateScreen={()=>navigateScreen(name, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
+                                <RecommendedBox recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}} navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
                                 <View style={{paddingHorizontal: 10}}>
                                 <Text style={styles.recommendedText}>Calories: {item.calories}</Text> 
                                 <Text style={styles.recommendedText}>Proteins: {item.proteins??0}</Text> 

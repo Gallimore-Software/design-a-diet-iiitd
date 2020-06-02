@@ -68,6 +68,7 @@ export default function HomeScreen({navigation, routes}) {
                   <View key={index} style={{marginLeft:10}}> 
                     <RecommendedBox 
                     saveButton={true}
+                    recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}}
                     saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat, nutrients})}} 
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
                     navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)}
@@ -94,10 +95,11 @@ export default function HomeScreen({navigation, routes}) {
           <ScrollView style={{paddingTop: 20, flex: 4}} horizontal={true}>
           {
             categorizedFood.map((item, index)=> {
+              let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
               console.log(item);
               return (
                 <View key={index} style={{marginLeft:10}}> 
-                  <RecommendedBox  ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 
+                  <RecommendedBox recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 
                   navigateScreen={()=>navigateScreen(item.name, item.calories, item.carbohydrates.toFixed(2), item.proteins, item.fat.toFixed(2), item.nutrients)}
                   /> 
                 </View>
