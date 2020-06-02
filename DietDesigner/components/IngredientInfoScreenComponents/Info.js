@@ -50,6 +50,9 @@ export default function Info(props) {
             backgroundColor="transparent"
             absolute
             />
+      <Text style={styles.bold}>
+        Calories: {props.calories}
+      </Text>
     </View>
   );
 }
@@ -58,16 +61,20 @@ export default function Info(props) {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 3,
-    flexDirection: 'row',
+    flexDirection: 'column',
+    flex: 4,
     backgroundColor: '#fff',
-    justifyContent: 'space-between',
-    alignContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginHorizontal: 14,
   },
   image: {
     width: 380,
     height: 150,
+  },
+  bold: {
+    fontWeight: 'bold',
+    fontSize: 18,
   }
 
   

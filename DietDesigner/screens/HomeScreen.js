@@ -42,11 +42,11 @@ export default function HomeScreen({navigation, routes}) {
     updateCategorizeFood(arr)
   }
 
-  const navigateScreen = (name, carbohydrates, proteins, fats, nutrients) => {
+  const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients) => {
     // name, carbohydrates, proteins, fats
     console.log(name, carbohydrates, proteins, fats)
     // navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
-    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'',carbohydrates:carbohydrates??100, proteins:50, fats:20, nutrients:nutrients});
+    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:50, fats:20, nutrients:nutrients});
   }
 
 
@@ -70,7 +70,7 @@ export default function HomeScreen({navigation, routes}) {
                     saveButton={true}
                     saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat, nutrients})}} 
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
-                    navigateScreen={()=>navigateScreen(name, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)}
+                    navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)}
                     style={styles.scrollHorizontal} /> 
                     <View style={{paddingHorizontal: 10}}>
                     
@@ -94,10 +94,11 @@ export default function HomeScreen({navigation, routes}) {
           <ScrollView style={{paddingTop: 20, flex: 4}} horizontal={true}>
           {
             categorizedFood.map((item, index)=> {
+              console.log(item);
               return (
                 <View key={index} style={{marginLeft:10}}> 
                   <RecommendedBox  ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 
-                  navigateScreen={()=>navigateScreen(item.name, item.carbohydrates.toFixed(2), item.proteins, item.fat.toFixed(2), item.nutrients)}
+                  navigateScreen={()=>navigateScreen(item.name, item.calories, item.carbohydrates.toFixed(2), item.proteins, item.fat.toFixed(2), item.nutrients)}
                   /> 
                 </View>
               )

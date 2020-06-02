@@ -30,12 +30,13 @@ export default function Info() {
   let totalProteins = 0;
   let totalFats = 0;
   let totalCarbs = 0;
+  let totalCalories = 0;
   savedItems.map((item, index) => {
       item = JSON.parse(item)
       totalCarbs += item.carbohydrates??0;
       totalProteins += item.proteins??0;
       totalFats += item.fat??0;
-
+      totalCalories += item.calories??0;
     })
 
   const chartconfig = {
@@ -73,7 +74,7 @@ export default function Info() {
   ];
   return (
     <View style={styles.container}>
-      <View marginLeft={15} marginTop={15}>
+      <View alignSelf='flex-start' marginLeft={15} marginTop={15}>
         <Text style={styles.textbold}>
           Total Cart Nutritional Value
         </Text>
@@ -89,6 +90,9 @@ export default function Info() {
             absolute
             />
       </View>
+      <Text style={styles.bold}>
+        Calories: {totalCalories}
+      </Text>
     </View>
   );
 }
@@ -97,11 +101,12 @@ export default function Info() {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 2,
+    flex: 4,
     flexDirection: 'column',
     // backgroundColor: 'blue',
     marginTop: 10,
     marginHorizontal: 14,
+    alignItems:'center'
   },
   image: {
     width: 380,
@@ -113,7 +118,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 20,
     textDecorationLine: 'underline',
+  },
+  bold: {
+    fontWeight: 'bold',
+    fontSize: 18,
   }
-
   
 });
