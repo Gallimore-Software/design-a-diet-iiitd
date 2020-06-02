@@ -24,7 +24,6 @@ let storeData = async (type, object) => {
         }
         await AsyncStorage.setItem(type, currValue.join('#'));
         
-        // console.log(currValue)
     }
 };
 

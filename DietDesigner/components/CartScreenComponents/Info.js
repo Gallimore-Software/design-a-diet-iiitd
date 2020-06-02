@@ -1,10 +1,43 @@
 import * as React from 'react';
 import { StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity, Dimensions} from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
+import {retrieveData} from '../../api/AsyncStorage';
+
 
 const {width, height} = Dimensions.get('window');
 
 export default function Info() {
+
+  const [savedItems, useSavedItems] =React.useState([]);
+
+  React.useEffect(()=>{
+      (async () => {
+          const asyncSavedItems = await retrieveData('cart');
+
+          useSavedItems([...asyncSavedItems.map(
+                  (item) => {
+                      // console.log(savedItems)
+                      return JSON.stringify(item)
+                  }
+              )]);
+          
+          
+          // console.log(savedItems);
+          // console.log(typeof(savedItems))
+      })()
+  })
+
+  let totalProteins = 0;
+  let totalFats = 0;
+  let totalCarbs = 0;
+  savedItems.map((item, index) => {
+      item = JSON.parse(item)
+      totalCarbs += item.carbohydrates??0;
+      totalProteins += item.proteins??0;
+      totalFats += item.fat??0;
+
+    })
+
   const chartconfig = {
     backgroundGradientFrom: "#1E2923",
     backgroundGradientFromOpacity: 0,
@@ -18,21 +51,21 @@ export default function Info() {
   const data = [
     {
       name: "Carbohydrates",
-      amount: 1400,
+      amount: Math.round(totalCarbs),
       color: "#33ccff",
       legendFontColor: "#1affff",
       legendFontSize: 13
     },
     {
       name: "Fats",
-      amount: 360,
+      amount: Math.round(totalFats),
       color: "#ff6600",
       legendFontColor: "#ffa366",
       legendFontSize: 13
     },
     {
       name: "Proteins",
-      amount: 567,
+      amount: Math.round(totalProteins),
       color: "#33ff33",
       legendFontColor: "#66ff66",
       legendFontSize: 13
@@ -64,7 +97,7 @@ export default function Info() {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     // backgroundColor: 'blue',
     marginTop: 10,

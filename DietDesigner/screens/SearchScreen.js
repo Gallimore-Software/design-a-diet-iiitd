@@ -20,8 +20,8 @@ export default function SearchScreen({navigation}) {
         })()
     })
 
-    const navigateScreen = (name, carbohydrates, proteins, fats) => {
-        navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
+    const navigateScreen = (name, carbohydrates, proteins, fats, nutrients) => {
+        navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients});
       }
 
     return (
@@ -63,9 +63,10 @@ export default function SearchScreen({navigation}) {
                     <ScrollView  horizontal={true}>
                         {
                         savedItems.map((item, index)=> {
+                            let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
                             return (
                             <View key={index} style={{marginLeft:10}}> 
-                                <RecommendedBox ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
+                                <RecommendedBox navigateScreen={()=>navigateScreen(name, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
                                 <View style={{paddingHorizontal: 10}}>
                                 <Text style={styles.recommendedText}>Calories: {item.calories}</Text> 
                                 <Text style={styles.recommendedText}>Proteins: {item.proteins??0}</Text> 

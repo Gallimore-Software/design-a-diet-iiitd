@@ -68,7 +68,7 @@ export default function HomeScreen({navigation, routes}) {
                   <View key={index} style={{marginLeft:10}}> 
                     <RecommendedBox 
                     saveButton={true}
-                    saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat})}} 
+                    saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat, nutrients})}} 
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
                     navigateScreen={()=>navigateScreen(name, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)}
                     style={styles.scrollHorizontal} /> 

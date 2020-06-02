@@ -175,7 +175,7 @@ export default function AllNutrients(props) {
 
 
 
-    const [pickerLabel, setpickerLabel] = useState('Major Nutrients');
+    const [pickerLabel, setpickerLabel] = useState('   Major Nutrients');
   
     const pickerdata =  [
         { value: 'Minerals'},
@@ -247,8 +247,17 @@ export default function AllNutrients(props) {
         for(let i=0; i<Object.keys(filteredNutrients[type]).length; i++) {
             let nutri = Object.keys(filteredNutrients[type])[i];
             let am = props.nutrients[nutri]??0;
+            if (am != 0) {
+                am = am.toFixed(4);
+            }
             if (nutri.includes('Fatty acids')) {
                 nutri = nutri.slice(13);
+            }
+            if (nutri.includes('not further defined')) {
+                nutri = nutri.slice(0, nutri.length-20);
+            }
+            if (nutri.includes('undifferentiated')) {
+                nutri = nutri.slice(0, nutri.length-17);
             }
             templist.push({ nutrient: nutri, amount: am+'mg' })
             majorlist.push({ nutrient: nutri, amount: am });

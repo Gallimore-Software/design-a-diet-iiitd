@@ -27,7 +27,6 @@ export default function CartItems() {
         })()
     })
 
-
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -57,7 +56,7 @@ export default function CartItems() {
 const styles = StyleSheet.create ({
     container: {
         display: 'flex',
-        flex: 2,
+        flex: 3,
     },
     ingredientview: {
         justifyContent: 'space-between',
