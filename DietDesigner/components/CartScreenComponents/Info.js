@@ -12,7 +12,7 @@ export default function Info() {
 
   React.useEffect(()=>{
       (async () => {
-          const asyncSavedItems = await retrieveData('cart');
+          const asyncSavedItems = await retrieveData('cart2');
 
           useSavedItems([...asyncSavedItems.map(
                   (item) => {
@@ -33,9 +33,9 @@ export default function Info() {
   let totalCalories = 0;
   savedItems.map((item, index) => {
       item = JSON.parse(item)
-      totalCarbs += item.carbohydrates??0;
+      totalCarbs += Math.round(item.carbohydrates);
+      totalFats = item.fats??0;
       totalProteins += item.proteins??0;
-      totalFats += item.fat??0;
       totalCalories += item.calories??0;
     })
 
@@ -52,7 +52,7 @@ export default function Info() {
   const data = [
     {
       name: "Carbohydrates",
-      amount: Math.round(totalCarbs),
+      amount: totalCarbs,
       color: "#33ccff",
       legendFontColor: "#1affff",
       legendFontSize: 13

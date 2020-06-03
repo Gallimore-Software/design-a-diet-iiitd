@@ -6,13 +6,13 @@ export default function Button1(props) {
 
   const [savedItems, useSavedItems] = React.useState([]);
 
-  const onPressHandler = (nutrients) => {
-    // props.navigation.navigate('NutritionalInfoScreen', {nutrients});
+  const onPressHandler = (nutrients, name) => {
+    props.navigation.navigate('NutritionalInfoScreen', {nutrients, name});
   }
 
   React.useEffect(()=>{
       (async () => {
-          const asyncSavedItems = await retrieveData('cart');
+          const asyncSavedItems = await retrieveData('cart2');
 
           useSavedItems([...asyncSavedItems.map(
                   (item) => {
@@ -49,7 +49,7 @@ export default function Button1(props) {
 
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={onPressHandler(totalNutrients)}>
+        <TouchableOpacity style={styles.button} onPress={() => onPressHandler(totalNutrients, 'Cart')}>
             <Text style={styles.text}>
                 See Full Nutritional Composition
             </Text>
