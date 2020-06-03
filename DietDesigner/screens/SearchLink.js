@@ -5,50 +5,117 @@ import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
 import {retrieveData, clearData} from '../api/AsyncStorage';
 
+import { Component } from 'react';
+import { SafeAreaView,ActivityIndicator  } from 'react-native';
+import { ListItem, SearchBar } from 'react-native-elements';
 
-export default function SearchLink({navigation}) {
-  
-  
+
+export default class SearchLink extends Component {
+  constructor(props) {
+    super(props);
+    //setting default state
+    this.state = { isLoading: true, text: '' };
+    this.arrayholder = [];
+  }
+
+  componentDidMount() {
+    return fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState(
+          {
+            isLoading: false,
+            dataSource: responseJson
+          },
+          function() {
+            this.arrayholder = responseJson;
+          }
+        );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  SearchFilterFunction(text) {
+    
+    const newData = this.arrayholder.filter(function(item) {
+     
+      const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      
+      dataSource: newData,
+      text: text,
+    });
+  }
+  ListViewItemSeparator = () => {
     
     return (
-        <View style={{flex: 1, backgroundColor: '#ffffff'}}>
-            <View style={{ borderWidth: 1, flexDirection: 'row'}}>
-                <Ionicons name="ios-search" size={25}/>
-                <TextInput
-                style={{fontSize:16}} 
-                    placeholder="    What's your Ingredient?"
-                    placeholderTextColor="grey"
-                    style={{flex: 1, fontWeight: '700' }}
-                    autoFocus={true}
-                    onSubmitEditing={()=>{console.log("Hello World")}}
-                />
-            </View>
-            <FlatList
-
-            
-                enableEmptySections={true}
-                  style={{ marginTop: 10 }}
-                 keyExtractor={(item, index) => index.toString()}
-             />
-
-
+      <View
+        style={{
+          height: 0.3,
+          width: '100%',
+          backgroundColor: '#080808',
+        }}
+      />
+    );
+  };
+  render() {
+    if (this.state.isLoading) {
+      
+      return (
+        <View style={{ flex: 1, paddingTop: 20 }}>
+          <ActivityIndicator />
         </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    textStyle: {
-        fontSize: 20,
+      );
+    }
+    return (
+      //ListView to show with textinput used as search bar
+      <View View style={{flex: 1, backgroundColor: '#ffffff'}}>
         
-    },
-    textMuted: {
-    fontWeight: '100'
-    },
-    textBold: {
-    fontWeight: 'bold'
-    },
-    recommendedText: {
-        fontSize: 10,
-        fontWeight: 'bold',
-      }
-})
+        <TextInput
+          style={styles.textInputStyle}
+          autoFocus={true}
+
+          onChangeText={text => this.SearchFilterFunction(text)}
+          value={this.state.text}
+          underlineColorAndroid="transparent"
+          placeholder="  What's your Ingredient?"
+        />
+        <FlatList
+          data={this.state.dataSource}
+          ItemSeparatorComponent={this.ListViewItemSeparator}
+          renderItem={({ item }) => (
+            <Text style={styles.textStyle}>{item.title}</Text>
+          )}
+          enableEmptySections={true}
+          style={{ marginTop: 10 }}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    );
+  }
+}
+const styles = StyleSheet.create({
+  viewStyle: {
+    justifyContent: 'center',
+    flex: 1,
+    marginTop: 40,
+    padding: 16,
+  },
+  textStyle: {
+    padding: 10,
+  },
+  textInputStyle: {
+    height: 40,
+    borderWidth: 1,
+    paddingLeft: 10,
+    borderColor: '#009688',
+    backgroundColor: '#FFFFFF',
+  },
+});
+
+
+
