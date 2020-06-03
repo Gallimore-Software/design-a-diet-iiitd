@@ -2,9 +2,11 @@ const foodRoutes = (app, fs) => {
 
     // variables
     const dataPath = './data/foods.json';
+    const imgFile = './data/img-data.csv';
+    const csv = require('neat-csv');
 
     // READ
-    app.get('/food', async (req, res) => {
+    app.get('/food',  async (req, res) => {
         await fs.readFile(dataPath, 'utf8', (err, data) => {
             if (err) {
                 throw err;
@@ -12,28 +14,43 @@ const foodRoutes = (app, fs) => {
 
             res.send(JSON.parse(data));
         });
+        
+        
     });
+
+    app.get('/images', async(req, res)=>{
+        await fs.readFile(imgFile, 'utf8', async (err, data) => {
+            let response = [];
+            let d = await csv(data)
+            d.forEach((i)=>{
+                response.push({"name":i.new_name, "url":i.wikiimage})
+            })
+
+            res.send(response);
+        });
+        
+        
+    })
 
     // query
     app.get('/food/:query', async (req, res)=>{
         const q =  await req.params.query;
 
-        await fs.readFile(dataPath, 'utf8', (err, data) => {
+        await fs.readFile(dataPath, 'utf8', async (err, data) => {
             if (err) {
                 throw err;
             }
 
-            const foods = JSON.parse(data);
+            const foods = await JSON.parse(data);
             let response = [];
             for (const name of foods) {
                 if (name["name"].includes(q)) {
                     response.push(name);
                 }
             }
-
             res.send((response));
-
         });
+
     })
 
     // recommended ingredients
