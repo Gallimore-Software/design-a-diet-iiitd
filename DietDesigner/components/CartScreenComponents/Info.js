@@ -91,7 +91,7 @@ export default function Info() {
             />
       </View>
       <Text style={styles.bold}>
-        Calories: {totalCalories}
+        Calories: {parseFloat(totalCalories).toFixed(2)}
       </Text>
     </View>
   );

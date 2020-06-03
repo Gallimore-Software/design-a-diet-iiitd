@@ -32,7 +32,6 @@ let clearData = async(type) => {
 }; 
 
 let deleteItem = async(type, object) => {
-    console.log(object, 100);
     let currValue = await AsyncStorage.getItem(type);
     currValue = currValue.split('#');
     currValue.splice(currValue.indexOf(JSON.stringify(object)), 1);

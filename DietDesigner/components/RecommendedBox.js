@@ -18,8 +18,8 @@ export default function RecommendedBox(props) {
   return (
     <View style={styles.container} >
         <TouchableOpacity onPress={() => {
-          props.navigateScreen();
           props.recentFunction();
+          props.navigateScreen();
 
         }}>
             <View style={styles.innerContainer} >

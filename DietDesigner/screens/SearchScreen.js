@@ -16,10 +16,9 @@ export default function SearchScreen({navigation}) {
     useEffect(()=>{
         (async () => {
             const asyncSavedItems = await retrieveData('cart');
-            // const asyncRecentItems = await retrieveData('recent');
+            const asyncRecentItems = await retrieveData('recent');
             useSavedItems([...asyncSavedItems]);
-            //2 statements slowing down dapp
-            // console.log(asyncSavedItems);
+            //statement slowing down app
             // useRecentItems([...asyncRecentItems]);
             clearData('recent');
         })()

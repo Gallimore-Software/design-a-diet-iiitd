@@ -44,7 +44,6 @@ export default function HomeScreen({navigation, routes}) {
 
   const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients) => {
     // name, carbohydrates, proteins, fats
-    console.log(name, carbohydrates, proteins, fats)
     // navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
     navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:50, fats:20, nutrients:nutrients});
   }
