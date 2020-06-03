@@ -8,7 +8,8 @@ import {retrieveData, clearData} from '../api/AsyncStorage';
 
 export default function SearchLink({navigation}) {
   
-
+  
+    
     return (
         <View style={{flex: 1, backgroundColor: '#ffffff'}}>
             <View style={{ borderWidth: 1, flexDirection: 'row'}}>
@@ -16,9 +17,9 @@ export default function SearchLink({navigation}) {
                 <TextInput
                 style={{fontSize:16}} 
                     placeholder="    What's your Ingredient?"
-                     autoFocus={true}
                     placeholderTextColor="grey"
                     style={{flex: 1, fontWeight: '700' }}
+                    autoFocus={true}
                     onSubmitEditing={()=>{console.log("Hello World")}}
                 />
             </View>
