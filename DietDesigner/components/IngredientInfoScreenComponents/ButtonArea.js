@@ -8,7 +8,7 @@ export default function ButtonArea(props) {
   return (
     <View style={styles.container}>
         <Button1 navigation={props.navigation} nutrients={props.nutrients} name={props.name}/>
-        <Buttons/>
+        <Buttons saveFunction={()=>props.saveFunction()}/>
     </View>
   );
 }

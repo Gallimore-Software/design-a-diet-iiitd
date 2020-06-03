@@ -2,10 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
 
-export default function Buttons() {
+export default function Buttons(props) {
+
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => {props.saveFunction()}}>
             <Text style={styles.text}>
                 Add to Cart
             </Text>

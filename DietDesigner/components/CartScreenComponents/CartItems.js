@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ScrollView, StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
-import {retrieveData} from '../../api/AsyncStorage';
+import {retrieveData, clearData, deleteItem} from '../../api/AsyncStorage';
 
 
 
@@ -12,7 +12,7 @@ export default function CartItems() {
 
     React.useEffect(()=>{
         (async () => {
-            const asyncSavedItems = await retrieveData('cart');
+            const asyncSavedItems = await retrieveData('cart2');
 
             useSavedItems([...asyncSavedItems.map(
                     (item) => {
@@ -41,7 +41,9 @@ export default function CartItems() {
                             <Text>
                                 gm
                             </Text>
+                            <TouchableOpacity onPress={()=>deleteItem('cart2', item)}>
                             <AntDesign style={styles.minusicon} name='closecircleo' size={20} color='black'/>
+                            </TouchableOpacity>
                         </View>
                     )
                 })}

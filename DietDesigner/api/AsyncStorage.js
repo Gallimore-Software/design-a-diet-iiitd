@@ -31,6 +31,14 @@ let clearData = async(type) => {
     AsyncStorage.removeItem(type);
 }; 
 
+let deleteItem = async(type, object) => {
+    let currValue = await AsyncStorage.getItem(type);
+    currValue = currValue.split('#');
+    currValue.splice(currValue.indexOf(JSON.stringify(object)), 1);
+
+    await AsyncStorage.setItem(type, currValue.join('#'));
+}
+
 
 let retrieveData = async (type) => {
     // cart/wishlist
@@ -50,4 +58,4 @@ let retrieveData = async (type) => {
     }
 };
 
-export {retrieveData, storeData, clearData};
+export {retrieveData, storeData, clearData, deleteItem};
