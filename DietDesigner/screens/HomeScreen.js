@@ -12,15 +12,29 @@ import {storeData, retrieveData} from '../api/AsyncStorage'
 
 
 export default function HomeScreen({navigation, routes}) {
+  const [images, updateImages] = useState([]);
   const [recommendedFood, updateRecommendFood] = useState([]);
   const [categorizedFood, updateCategorizeFood] = useState([]);
+  let imageDict = {};
+
   useEffect(()=>{
     (async()=>{
       const res = await API.getData('/ingredients')
       const data = await res.data
       updateRecommendFood(data)
       updateCategorizeFood([...data.sort()])
-      console.log("rendered")
+    })()
+  }, [])
+
+  useEffect(()=>{
+    (async()=>{
+      const res = await API.getData('/images')
+      const data = await res.data
+      updateImages(data);
+      data.forEach((item)=>{
+        imageDict[item.name] = item.url;
+      })
+      // console.log(imageDict);
     })()
   }, [])
 
@@ -63,6 +77,7 @@ export default function HomeScreen({navigation, routes}) {
             {
               recommendedFood.map((item, index)=> {
                 let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
+                // console.log(name, imageDict[name])
                 return (
                   <View key={index} style={{marginLeft:10}}> 
                     <RecommendedBox 
@@ -71,7 +86,9 @@ export default function HomeScreen({navigation, routes}) {
                     saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat, nutrients})}} 
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
                     navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)}
-                    style={styles.scrollHorizontal} /> 
+                    style={styles.scrollHorizontal}
+                    imgSrc={imageDict[name]}
+                    /> 
                     <View style={{paddingHorizontal: 10}}>
                     
                       <Text style={styles.recommendedText}>Calories: {calories.toFixed(2)}</Text> 
@@ -95,7 +112,7 @@ export default function HomeScreen({navigation, routes}) {
           {
             categorizedFood.map((item, index)=> {
               let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
-              console.log(item);
+              // console.log(item);
               return (
                 <View key={index} style={{marginLeft:10}}> 
                   <RecommendedBox recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 

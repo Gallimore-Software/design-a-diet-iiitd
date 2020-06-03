@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
 
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 
 let saveButton = (clickFunction) => {
   return (
@@ -15,6 +15,11 @@ let saveButton = (clickFunction) => {
 
 
 export default function RecommendedBox(props) {
+  if (props.imgSrc) {
+    console.log(props.imgSrc)
+  }
+
+
   return (
     <View style={styles.container} >
         <TouchableOpacity onPress={() => {
@@ -22,11 +27,19 @@ export default function RecommendedBox(props) {
           props.navigateScreen();
 
         }}>
+
             <View style={styles.innerContainer} >
               {
                 props.saveButton===true ? 
                 saveButton(props.saveFunction) : <Text/>
               }
+
+              {
+                props.imgSrc ? (
+                  <Image source={{uri: props.imgSrc}} />
+                ): (<></>)
+              }
+
 
             </View>
 
