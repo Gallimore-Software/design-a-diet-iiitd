@@ -4,6 +4,7 @@ const foodRoutes = (app, fs) => {
     const dataPath = './data/foods.json';
     const imgFile = './data/img-data.csv';
     const csv = require('neat-csv');
+    const levenshtein = require('js-levenshtein');
 
     // READ
     app.get('/food',  async (req, res) => {
@@ -31,6 +32,28 @@ const foodRoutes = (app, fs) => {
         
         
     })
+
+    // recommendations
+    app.get('/recs/:query', async(req, res)=>{
+        const q =  await req.params.query;
+        await fs.readFile(dataPath, 'utf8', (err, data) => {
+            if (err) {
+                throw err;
+            }
+
+            let array = JSON.parse(data);
+            let ans = [];
+            array.forEach((item)=>{
+                ans.push([levenshtein(item.name, q), item.name]);
+            })
+            
+            ans.sort().reverse();
+
+            ans = ans.map((item)=>item[1])
+            res.send(ans);
+        });
+    } )
+
 
     // query
     app.get('/food/:query', async (req, res)=>{
