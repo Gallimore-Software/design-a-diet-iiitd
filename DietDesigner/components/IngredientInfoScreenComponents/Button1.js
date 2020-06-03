@@ -8,7 +8,7 @@ export default function Button1(props) {
   }
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={onPressHandler(props.nutrients, props.name)}>
+        <TouchableOpacity style={styles.button} onPress={() => onPressHandler(props.nutrients, props.name)}>
             <Text style={styles.text}>
                 See Full Nutritional Composition
             </Text>
