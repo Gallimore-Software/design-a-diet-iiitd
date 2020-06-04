@@ -1,13 +1,20 @@
+import * as WebBrowser from 'expo-web-browser';
 import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
 import { Keyboard,StyleSheet, Text,FlatList, View, TextInput, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
 import {retrieveData, clearData} from '../api/AsyncStorage';
-
+import RecommendedBox from '../components/RecommendedBox';
+import MiddleNavBar from '../components/MiddleNavBar';
 import { Component } from 'react';
 import { SafeAreaView,ActivityIndicator  } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
+import API from '../api'
+//import {storeData, retrieveData} from '../api/AsyncStorage'
+
+
+
 
 
 export default class SearchLink extends Component {
