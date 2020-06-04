@@ -81,7 +81,6 @@ export default class SearchLink extends Component {
 
           onChangeText={text => this.SearchFilterFunction(text)}
           value={this.state.text}
-          underlineColorAndroid="transparent"
           placeholder="  What's your Ingredient?"
         />
         <FlatList
