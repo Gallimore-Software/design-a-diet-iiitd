@@ -13,6 +13,16 @@ let saveButton = (clickFunction) => {
   )
 }
 
+let removeButton = (clickFunction) => {
+  return (
+    <TouchableOpacity style={styles.button2} onPress={clickFunction} >
+      <Text style={styles.text}>
+        -
+      </Text>
+    </TouchableOpacity>
+  )
+}
+
 
 export default function RecommendedBox(props) {
   if (props.imgSrc) {
@@ -31,9 +41,8 @@ export default function RecommendedBox(props) {
             <View style={styles.innerContainer} >
               {
                 props.saveButton===true ? 
-                saveButton(props.saveFunction) : <Text/>
+                saveButton(props.saveFunction) : (props.removeButton===true ? removeButton(props.removeFunction) : <Text />)     
               }
-
               {
                 props.imgSrc ? (
                   <Image source={{uri: props.imgSrc}} />
@@ -70,6 +79,15 @@ const styles = StyleSheet.create({
     },
     button: {
       backgroundColor: "green",
+      height: 30,
+      width: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 30,
+      alignSelf: 'flex-end',
+    },
+    button2: {
+      backgroundColor: "red",
       height: 30,
       width: 30,
       justifyContent: 'center',
