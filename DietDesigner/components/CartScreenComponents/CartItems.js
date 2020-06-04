@@ -16,7 +16,6 @@ export default function CartItems() {
 
             useSavedItems([...asyncSavedItems.map(
                     (item) => {
-                        // console.log(savedItems)
                         return JSON.stringify(item)
                     }
                 )]);

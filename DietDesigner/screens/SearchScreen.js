@@ -6,7 +6,7 @@ import RecentIngredientList from '../components/RecentIngredientList';
 import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
 import ButtonArea from '../components/SearchComponents/ButtonArea'
-import {retrieveData, clearData, storeData} from '../api/AsyncStorage';
+import {retrieveData, clearData, storeData, deleteItem} from '../api/AsyncStorage';
 
 
 export default function SearchScreen({navigation}) {
@@ -76,7 +76,7 @@ export default function SearchScreen({navigation}) {
                             let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
                             return (
                             <View key={index} style={{marginLeft:10}}> 
-                                <RecommendedBox recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}} navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
+                                <RecommendedBox removeFunction={() => deleteItem('cart', item)} removeButton={true} recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}} navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
                                 <View style={{paddingHorizontal: 10}}>
                                 <Text style={styles.recommendedText}>Calories: {item.calories}</Text> 
                                 <Text style={styles.recommendedText}>Proteins: {item.proteins??0}</Text> 
