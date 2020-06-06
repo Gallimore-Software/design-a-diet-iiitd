@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
 
-import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image, ImageBackground} from 'react-native';
 
 let saveButton = (clickFunction) => {
   return (
@@ -26,7 +26,7 @@ let removeButton = (clickFunction) => {
 
 export default function RecommendedBox(props) {
   if (props.imgSrc) {
-    console.log(props.imgSrc)
+    // console.log(props.imgSrc)
   }
 
 
@@ -39,15 +39,21 @@ export default function RecommendedBox(props) {
         }}>
 
             <View style={styles.innerContainer} >
-              {
+              {/* {
                 props.saveButton===true ? 
                 saveButton(props.saveFunction) : (props.removeButton===true ? removeButton(props.removeFunction) : <Text />)     
-              }
-              {
+              } */}
+               <ImageBackground style={styles.image} source={{uri: props.imgSrc}}>
+                {props.saveButton===true ? 
+                saveButton(props.saveFunction) : (props.removeButton===true ? removeButton(props.removeFunction) : <Text />)  }   
+               </ImageBackground>
+              {/* {
                 props.imgSrc ? (
-                  <Image source={{uri: props.imgSrc}} />
+                  <ImageBackground style={styles.image} source={{uri: props.imgSrc}} />
+
+                  <ImageBackground/>
                 ): (<></>)
-              }
+              } */}
 
 
             </View>
@@ -98,5 +104,9 @@ const styles = StyleSheet.create({
     text: { 
       fontSize: 20,
       color: 'white'
+     },
+     image: {
+       height: 100,
+      resizeMode: 'contain'
      }
   });
