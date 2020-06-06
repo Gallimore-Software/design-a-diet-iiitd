@@ -17,15 +17,16 @@ export default function IngredientInfoScreen({navigation, route}) {
     let proteins = route.params.proteins;
     let fats = route.params.fats;
     let nutrients = route.params.nutrients;
+    let imagelink = route.params.image;
 
-    storeData('cart2', {name, calories, proteins, carbohydrates, fats, nutrients});
+    storeData('cart2', {name, calories, proteins, carbohydrates, fats, nutrients, imagelink});
   }
 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="skyblue" barStyle="light-content"/>
       <IngredientName name={route.params.ingredientName}/>
-      <IngredientImage/>
+      <IngredientImage image={route.params.image}/>
       <Quantity/>
       <Info carbohydrates={route.params.carbohydrates} proteins={route.params.proteins} fats={route.params.fats} calories={route.params.calories}/>
   

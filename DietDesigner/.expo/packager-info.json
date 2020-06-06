@@ -2,5 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
+<<<<<<< HEAD
   "packagerPid": 8287
+=======
+  "packagerPid": 14964
+>>>>>>> fdb6a309173a7fddb1dacd1c7a3419db35da41ec
 }

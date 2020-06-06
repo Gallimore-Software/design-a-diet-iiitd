@@ -6,10 +6,12 @@ import RecentIngredientList from '../components/RecentIngredientList';
 import { ScrollView } from 'react-native-gesture-handler';
 import {useState, useEffect} from 'react';
 import ButtonArea from '../components/SearchComponents/ButtonArea'
+import API from '../api'
 import {retrieveData, clearData, storeData, deleteItem} from '../api/AsyncStorage';
 
 
 export default function SearchScreen({navigation}) {
+    const [images, updateImages] = useState([]);
 
     const [savedItems, useSavedItems] = useState([]);
     const [recentItems, useRecentItems] = useState([]);
@@ -24,8 +26,17 @@ export default function SearchScreen({navigation}) {
         })()
     })
 
-    const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients) => {
-        navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients});
+    useEffect(()=>{
+        (async()=>{
+          const res = await API.getData('/images')
+          const data = await res.data
+          updateImages(data);
+        })()
+      }, [])
+    
+
+    const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
+        navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
       }
 
     return (
@@ -74,9 +85,10 @@ export default function SearchScreen({navigation}) {
                         {
                         savedItems.map((item, index)=> {
                             let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
+                            let imglink = images[name];
                             return (
                             <View key={index} style={{marginLeft:10}}> 
-                                <RecommendedBox removeFunction={() => deleteItem('cart', item)} removeButton={true} recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}} navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
+                                <RecommendedBox imgSrc={images[name]} removeFunction={() => deleteItem('cart', item)} removeButton={true} recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients, imglink})}} navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients, imglink)} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()}  style={styles.scrollHorizontal} /> 
                                 <View style={{paddingHorizontal: 10}}>
                                 <Text style={styles.recommendedText}>Calories: {item.calories}</Text> 
                                 <Text style={styles.recommendedText}>Proteins: {item.proteins??0}</Text> 

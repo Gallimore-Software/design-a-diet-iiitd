@@ -31,10 +31,6 @@ export default function HomeScreen({navigation, routes}) {
       const res = await API.getData('/images')
       const data = await res.data
       updateImages(data);
-      data.forEach((item)=>{
-        imageDict[item.name] = item.url;
-      })
-      // console.log(imageDict);
     })()
   }, [])
 
@@ -56,10 +52,10 @@ export default function HomeScreen({navigation, routes}) {
     updateCategorizeFood(arr)
   }
 
-  const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients) => {
+  const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
     // name, carbohydrates, proteins, fats
     // navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
-    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:50, fats:20, nutrients:nutrients});
+    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:50, fats:20, nutrients:nutrients, image: image});
   }
 
 
@@ -77,17 +73,18 @@ export default function HomeScreen({navigation, routes}) {
             {
               recommendedFood.map((item, index)=> {
                 let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
-                // console.log(name, imageDict[name])
+                // console.log(name, images[name])
+                let imglink = images[name];
                 return (
                   <View key={index} style={{marginLeft:10}}> 
                     <RecommendedBox 
                     saveButton={true}
-                    recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}}
-                    saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat, nutrients})}} 
+                    recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients, imglink})}}
+                    saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat, nutrients, imglink})}} 
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
-                    navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients)}
+                    navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients, imglink)}
                     style={styles.scrollHorizontal}
-                    imgSrc={imageDict[name]}
+                    imgSrc={imglink}
                     /> 
                     <View style={{paddingHorizontal: 10}}>
                     
@@ -113,10 +110,11 @@ export default function HomeScreen({navigation, routes}) {
             categorizedFood.map((item, index)=> {
               let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
               // console.log(item);
+              let imglink = images[name];
               return (
                 <View key={index} style={{marginLeft:10}}> 
-                  <RecommendedBox recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients})}} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 
-                  navigateScreen={()=>navigateScreen(item.name, item.calories, item.carbohydrates.toFixed(2), item.proteins, item.fat.toFixed(2), item.nutrients)}
+                  <RecommendedBox imgSrc={images[name]} recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients, imglink})}} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 
+                  navigateScreen={()=>navigateScreen(item.name, item.calories, item.carbohydrates.toFixed(2), item.proteins, item.fat.toFixed(2), item.nutrients, imglink)}
                   /> 
                 </View>
               )

@@ -7,11 +7,13 @@ import { MonoText } from '../components/StyledText';
 import RecommendedBox from '../components/RecommendedBox';
 import MiddleNavBar from '../components/MiddleNavBar';
 import { retrieveData, storeData } from '../api/AsyncStorage';
+import API from '../api';
 
 export default function HomeScreen({navigation}) {
   let list = [1,2,3,4,5,6,7,8,9]
 
   const [savedItems, useSavedItems] =React.useState([]);
+  const [images, updateImages] = React.useState([]);
 
     React.useEffect(()=>{
         (async () => {
@@ -27,8 +29,16 @@ export default function HomeScreen({navigation}) {
         })()
     })
 
-  const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients) => {
-    navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients});
+    React.useEffect(()=>{
+      (async()=>{
+        const res = await API.getData('/images')
+        const data = await res.data
+        updateImages(data);
+      })()
+    }, [])
+
+  const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
+    navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
   }
 
 
@@ -45,11 +55,13 @@ export default function HomeScreen({navigation}) {
               savedItems.map((item, index)=> {
                 item = JSON.parse(item);
                 let {name, calories, proteins, carbohydrates, fats, nutrients} = item;
+                let imglink = images[name];
                 return (
                   <View key={index} style={{marginLeft:10}}> 
                     <RecommendedBox
-                    recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fats, nutrients})}}
-                    navigateScreen={()=>navigateScreen(name, calories, parseFloat(carbohydrates).toFixed(2), proteins, fats.toFixed(2), nutrients)}
+                    imgSrc={imglink}
+                    recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fats, nutrients, imglink})}}
+                    navigateScreen={()=>navigateScreen(name, calories, parseFloat(carbohydrates).toFixed(2), proteins, fats.toFixed(2), nutrients, imglink)}
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
                     style={styles.scrollHorizontal} /> 
                     
@@ -75,7 +87,7 @@ export default function HomeScreen({navigation}) {
             list.map((item)=> {
               return (
                 <View style={{marginLeft:10}}> 
-                  <RecommendedBox   /> 
+                  <RecommendedBox  /> 
                 </View>
               )
               

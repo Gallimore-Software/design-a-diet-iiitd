@@ -2,6 +2,7 @@ const foodRoutes = (app, fs) => {
 
     // variables
     const dataPath = './data/foods.json';
+    const imagePath = './data/json_out.json';
     const imgFile = './data/img-data.csv';
     const csv = require('neat-csv');
     const levenshtein = require('js-levenshtein');
@@ -19,19 +20,31 @@ const foodRoutes = (app, fs) => {
         
     });
 
-    app.get('/images', async(req, res)=>{
-        await fs.readFile(imgFile, 'utf8', async (err, data) => {
-            let response = [];
-            let d = await csv(data)
-            d.forEach((i)=>{
-                response.push({"name":i.new_name, "url":i.wikiimage})
-            })
+    app.get('/images',  async (req, res) => {
+        await fs.readFile(imagePath, 'utf8', (err, data) => {
+            if (err) {
+                throw err;
+            }
 
-            res.send(response);
+            res.send(JSON.parse(data));
         });
         
         
-    })
+    });
+
+    // app.get('/images', async(req, res)=>{
+    //     await fs.readFile(imgFile, 'utf8', async (err, data) => {
+    //         let response = [];
+    //         let d = await csv(data)
+    //         d.forEach((i)=>{
+    //             response.push({"name":i.new_name, "url":i.wikiimage})
+    //         })
+
+    //         res.send(response);
+    //     });
+        
+        
+    // })
 
     // recommendations
     app.get('/recs/:query', async(req, res)=>{
