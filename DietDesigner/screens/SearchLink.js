@@ -13,8 +13,9 @@ import { ListItem, SearchBar } from 'react-native-elements';
 import API from '../api'
 //import {storeData, retrieveData} from '../api/AsyncStorage'
 
-
-
+import moment from 'moment';
+import decode from 'parse-entities';
+import { createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 
 export default class SearchLink extends Component {
@@ -25,6 +26,18 @@ export default class SearchLink extends Component {
     this.arrayholder = [];
   }
 
+  // const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
+  //       navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
+  //     }
+
+
+_onPress(item) {
+    this.props.navigation.navigate('IngredientInfoScreen', 
+      {ingredientName: name??'',calories: calories, 
+      carbohydrates: carbohydrates??100, 
+      proteins: proteins??50, 
+      fats: fats??20, nutrients:nutrients, image:image});
+  }
   componentDidMount() {
     return fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
@@ -69,7 +82,19 @@ export default class SearchLink extends Component {
       />
     );
   };
+renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity onPress={() => this._onPress(item)}>
+        <View style={styles.container}>
+          <Text style={styles.textStyle}>{item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+
   render() {
+
     if (this.state.isLoading) {
       
       return (
@@ -92,10 +117,13 @@ export default class SearchLink extends Component {
         />
         <FlatList
           data={this.state.dataSource}
+
           ItemSeparatorComponent={this.ListViewItemSeparator}
-          renderItem={({ item }) => (
-            <Text style={styles.textStyle}>{item.title}</Text>
-          )}
+           // renderItem={({ this.renderItem }) => (
+           //  <Text style={styles.textStyle}>{item.title}</Text>
+           // )}
+           renderItem={this.renderItem}
+          
           enableEmptySections={true}
           style={{ marginTop: 10 }}
           keyExtractor={(item, index) => index.toString()}
