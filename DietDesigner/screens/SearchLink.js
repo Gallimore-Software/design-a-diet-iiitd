@@ -10,8 +10,9 @@ import MiddleNavBar from '../components/MiddleNavBar';
 import { Component } from 'react';
 import { SafeAreaView,ActivityIndicator  } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
-import API from '../api'
-//import {storeData, retrieveData} from '../api/AsyncStorage'
+import API from '../api';
+//import {storeData, retrieveData} from '../api/AsyncStorage';
+
 
 import moment from 'moment';
 import decode from 'parse-entities';
@@ -29,7 +30,6 @@ export default class SearchLink extends Component {
   // const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
   //       navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
   //     }
-
 
 _onPress(item) {
     this.props.navigation.navigate('IngredientInfoScreen', 
