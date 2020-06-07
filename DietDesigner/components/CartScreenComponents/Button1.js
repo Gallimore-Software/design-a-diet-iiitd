@@ -7,7 +7,8 @@ export default function Button1(props) {
   const [savedItems, useSavedItems] = React.useState([]);
 
   const onPressHandler = (nutrients, name) => {
-    props.navigation.navigate('NutritionalInfoScreen', {nutrients, name});
+    let quantity = 100;
+    props.navigation.navigate('NutritionalInfoScreen', {nutrients, name, quantity});
   }
 
   React.useEffect(()=>{
@@ -24,15 +25,16 @@ export default function Button1(props) {
     })
 
 
-    const merge = (data) => {
+    const merge = (data, quantityarr) => {
       const result = {}; 
-    
+      let i = 0;
       data.forEach(basket => { 
+        let t = quantityarr[i++];
         for (let [key, value] of Object.entries(basket)) { 
           if (result[key]) { 
-            result[key] += value; 
+            result[key] += (value*t)/100; 
           } else { 
-            result[key] = value;
+            result[key] = (value*t)/100;
           }
         }
       });
@@ -40,12 +42,14 @@ export default function Button1(props) {
     };
     
     let arr = []
+    let quantityarr = []
     savedItems.map((item, index) => {
       item = JSON.parse(item);
+      quantityarr.push(item.quant);
       let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
       arr.push(nutrients);
     })
-    const totalNutrients = merge(arr)
+    const totalNutrients = merge(arr, quantityarr)
 
   return (
     <View style={styles.container}>

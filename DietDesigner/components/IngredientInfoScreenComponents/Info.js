@@ -19,21 +19,21 @@ export default function Info(props) {
   const data = [
     {
       name: "Carbohydrates",
-      amount: Math.round(props.carbohydrates),
+      amount: Math.round((props.carbohydrates*props.quantity)/100),
       color: "#33ccff",
       legendFontColor: "#1affff",
       legendFontSize: 13
     },
     {
       name: "Fats",
-      amount: Math.round(props.fats),
+      amount: Math.round((props.fats*props.quantity)/100),
       color: "#ff6600",
       legendFontColor: "#ffa366",
       legendFontSize: 13
     },
     {
       name: "Proteins",
-      amount: Math.round(props.proteins),
+      amount: Math.round((props.proteins*props.quantity)/100),
       color: "#33ff33",
       legendFontColor: "#66ff66",
       legendFontSize: 13
@@ -51,7 +51,7 @@ export default function Info(props) {
             absolute
             />
       <Text style={styles.bold}>
-        Calories: {props.calories}
+        Calories: {Math.floor((props.calories*props.quantity)/100)}
       </Text>
     </View>
   );

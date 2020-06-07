@@ -12,7 +12,7 @@ export default function NutritionalInfoScreen({navigation, route}) {
         <View style={styles.container}>
             <IngredientName name={route.params.name}/>
             <Quantity/>
-            <AllNutrients nutrients={route.params.nutrients}/>
+            <AllNutrients quantity={route.params.quantity} nutrients={route.params.nutrients}/>
             <ButtonArea navigation={navigation}/>
         </View>
     );

@@ -248,6 +248,7 @@ export default function AllNutrients(props) {
             let nutri = Object.keys(filteredNutrients[type])[i];
             let am = props.nutrients[nutri]??0;
             if (am != 0) {
+                am = (am*props.quantity)/100
                 am = am.toFixed(4);
             }
             if (nutri.includes('Fatty acids')) {
@@ -259,7 +260,7 @@ export default function AllNutrients(props) {
             if (nutri.includes('undifferentiated')) {
                 nutri = nutri.slice(0, nutri.length-17);
             }
-            templist.push({ nutrient: nutri, amount: am+'mg' })
+            templist.push({ nutrient: nutri, amount: am +'mg' })
             majorlist.push({ nutrient: nutri, amount: am });
         }
         newlist.push(templist);

@@ -6,7 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import RecommendedBox from '../components/RecommendedBox';
 import MiddleNavBar from '../components/MiddleNavBar';
 import API from '../api'
-import {storeData, retrieveData} from '../api/AsyncStorage'
+import {storeData, retrieveData, clearData, deleteItem} from '../api/AsyncStorage'
 
 
 

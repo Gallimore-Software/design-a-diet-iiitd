@@ -33,11 +33,12 @@ export default function Info() {
   let totalCalories = 0;
   savedItems.map((item, index) => {
       item = JSON.parse(item)
-      totalCarbs += Math.round(item.carbohydrates);
-      totalFats = item.fats??0;
-      totalProteins += item.proteins??0;
-      totalCalories += item.calories??0;
+      totalCarbs += Math.round((item.carbohydrates*(item.quant??100))/100);
+      totalFats = Math.round((item.fats*(item.quant??100))/100)??0;
+      totalProteins += Math.round((item.proteins*(item.quant??100))/100)??0;
+      totalCalories += Math.round((item.calories*(item.quant??100))/100)??0;
     })
+
 
   const chartconfig = {
     backgroundGradientFrom: "#1E2923",

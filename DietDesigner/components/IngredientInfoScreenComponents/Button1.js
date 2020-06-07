@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-na
 
 
 export default function Button1(props) {
-  const onPressHandler = (nutrients, name) => {
-    props.navigation.navigate('NutritionalInfoScreen', {nutrients, name});
+  const onPressHandler = (nutrients, name, quantity) => {
+    props.navigation.navigate('NutritionalInfoScreen', {nutrients, name, quantity});
   }
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => onPressHandler(props.nutrients, props.name)}>
+        <TouchableOpacity style={styles.button} onPress={() => onPressHandler(props.nutrients, props.name, props.quantity)}>
             <Text style={styles.text}>
                 See Full Nutritional Composition
             </Text>
