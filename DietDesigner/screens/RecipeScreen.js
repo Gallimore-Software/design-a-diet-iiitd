@@ -100,7 +100,7 @@ export default function HomeScreen({navigation}) {
             recipes.slice(0,10).map((item)=> {
               return (
                 <View style={{marginLeft:10}}> 
-                  <RecommendedBox ingredientName={item.name} recentFunction={()=>{}}  /> 
+                  <RecommendedBox ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen(item.name, 10, 20, 30, 40, 200, '')}  /> 
                 </View>
               )
               
