@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import { any } from 'prop-types';
 
 let _splitAndFormat = (data) => {
     // data is a string separated by #
@@ -39,6 +40,13 @@ let deleteItem = async(type, object) => {
     await AsyncStorage.setItem(type, currValue.join('#'));
 }
 
+let replaceItem = async(type, object, newobject) => {
+    let currValue = await AsyncStorage.getItem(type);
+    currValue = currValue.split('#');
+    currValue.splice(currValue.indexOf(JSON.stringify(object)), 1, JSON.stringify(newobject));
+    
+    await AsyncStorage.setItem(type, currValue.join('#'));
+}   
 
 let retrieveData = async (type) => {
     // cart/wishlist
@@ -58,4 +66,4 @@ let retrieveData = async (type) => {
     }
 };
 
-export {retrieveData, storeData, clearData, deleteItem};
+export {retrieveData, storeData, clearData, deleteItem, replaceItem};
