@@ -16,7 +16,6 @@ export default function HomeScreen({navigation, routes}) {
   const [recommendedFood, updateRecommendFood] = useState([]);
   const [categorizedFood, updateCategorizeFood] = useState([]);
   let imageDict = {};
-
   useEffect(()=>{
     (async()=>{
       const res = await API.getData('/ingredients')
