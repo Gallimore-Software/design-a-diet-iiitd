@@ -4,7 +4,7 @@ const foodRoutes = (app, fs) => {
     const dataPath = './data/foods.json';
     const imagePath = './data/json_out.json';
     const imgFile = './data/img-data.csv';
-    const csv = require('neat-csv');
+    const recipeFile = './data/recipe.json';
     const levenshtein = require('js-levenshtein');
 
     // READ
@@ -32,19 +32,35 @@ const foodRoutes = (app, fs) => {
         
     });
 
-    // app.get('/images', async(req, res)=>{
-    //     await fs.readFile(imgFile, 'utf8', async (err, data) => {
-    //         let response = [];
-    //         let d = await csv(data)
-    //         d.forEach((i)=>{
-    //             response.push({"name":i.new_name, "url":i.wikiimage})
-    //         })
+    // recipes
+    app.get('/recipes/:query', async (req, res)=>{
+        const qu =  await req.params.query; // array
+        // const q = await JSON.parse(qu)
+        console.log(qu)
 
-    //         res.send(response);
-    //     });
-        
-        
-    // })
+        // try{
+        await fs.readFile(recipeFile, 'utf8', (err, data) => {
+            if (err) {
+                throw err;
+            }
+
+            let array = JSON.parse(data);
+            let ans = [];
+            for (let i of array) {
+                // console.log(i)
+                
+                // res.send()
+                // break;
+                for (let j in i) {
+                    // if (i[j].ingredients.includes(qu)) {
+                        ans.push({'name':j,'ingredients':i[j]})
+                    // }
+                }
+            }
+            res.send(ans);
+        });
+        // res.send([])
+    } )
 
     // recommendations
     app.get('/recs/:query', async(req, res)=>{

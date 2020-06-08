@@ -2,13 +2,15 @@ import * as React from 'react';
 import {ScrollView, StyleSheet, Text, Image, View, Button, Alert, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
-import {retrieveData, clearData, deleteItem} from '../../api/AsyncStorage';
-
+import {retrieveData, clearData, deleteItem, replaceItem, storeData} from '../../api/AsyncStorage';
+import _ from 'lodash';
 
 
 export default function CartItems() {
 
     const [savedItems, useSavedItems] =React.useState([]);
+    const [quantity, changeQuantity] = React.useState(0);
+    
 
     React.useEffect(()=>{
         (async () => {
@@ -26,6 +28,12 @@ export default function CartItems() {
         })()
     })
 
+    const onSubmitEditingHandler = (item) => {
+        let newitem = _.cloneDeep(item);
+        newitem.quant = quantity;
+        replaceItem('cart2', item, newitem);
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -36,7 +44,7 @@ export default function CartItems() {
                             <Text style={styles.textbold}>
                                  {item.name.split(' ').slice(-2).join(' ').toUpperCase()}
                             </Text>
-                            <TextInput style={styles.textinput} placeholder="Enter Quantity"/>
+                            <TextInput onSubmitEditing={() => onSubmitEditingHandler(item)} onChangeText={(value) => {changeQuantity(value)}} value={item.quant} style={styles.textinput} placeholder="Enter Quantity"/>
                             <Text>
                                 gm
                             </Text>

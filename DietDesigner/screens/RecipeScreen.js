@@ -14,6 +14,7 @@ export default function HomeScreen({navigation}) {
 
   const [savedItems, useSavedItems] =React.useState([]);
   const [images, updateImages] = React.useState([]);
+  const [recipes, updateRecipes] = React.useState([]);
 
     React.useEffect(()=>{
         (async () => {
@@ -36,6 +37,18 @@ export default function HomeScreen({navigation}) {
         updateImages(data);
       })()
     }, [])
+
+    React.useEffect(()=>{
+    
+      (async () => {
+        let name = savedItems.map((item)=>JSON.parse(item).name.toLowerCase())
+        console.log(name)
+        const res = await API.getData('/recipes/'+name)
+        const data = await res.data;
+        updateRecipes(data)
+
+    })()
+    }, [savedItems.join(',')])
 
   const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
     navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
@@ -84,10 +97,10 @@ export default function HomeScreen({navigation}) {
 
           <ScrollView style={{paddingTop: 20, flex: 4}} horizontal={true}>
           {
-            list.map((item)=> {
+            recipes.slice(0,10).map((item)=> {
               return (
                 <View style={{marginLeft:10}}> 
-                  <RecommendedBox  /> 
+                  <RecommendedBox ingredientName={item.name} recentFunction={()=>{}}  /> 
                 </View>
               )
               

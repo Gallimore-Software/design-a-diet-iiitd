@@ -67,7 +67,6 @@ export default class SearchScreen extends React.Component {
                 <View style={{paddingTop: 10, flex: 2}}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20}}>
                         <TouchableOpacity><Text style={[styles.textStyle, styles.textBold]}>Recent</Text></TouchableOpacity>
-                        <TouchableOpacity><Text style={[styles.textStyle,styles.textMuted]}>View All</Text></TouchableOpacity>
                     </View>
                     <View style={ { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingTop: 10 }}>
                         {/* <TouchableOpacity onPress={()=>navigateScreen("Potato", 200, 100, 50)}>                    
@@ -76,7 +75,7 @@ export default class SearchScreen extends React.Component {
                         <TouchableOpacity onPress={()=>navigateScreen("Orange", 150, 30, 27)}>                    
                             <RecentIngredientList ingredient="Orange"/>
                         </TouchableOpacity> */}
-                        {this.state.recentItems.map((item, index) => {
+                        {this.state.recentItems.slice(0,3).map((item, index) => {
                             let {name, calories, proteins, carbohydrates, fats, nutrients} = item;
                             return (
                                 <TouchableOpacity onPress={()=>navigateScreen(name, calories, carbohydrates, proteins, fats, nutrients)}>                    
