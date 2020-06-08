@@ -3,9 +3,9 @@ import { StyleSheet, Text,FlatList, View, TextInput, TouchableOpacity } from 're
 
 import { Component } from 'react';
 import { ActivityIndicator  } from 'react-native';
-// import { ListItem, SearchBar } from 'react-native-elements';
-// import API from '../api';
-//import {storeData, retrieveData} from '../api/AsyncStorage';
+import { ListItem, SearchBar } from 'react-native-elements';
+import API from '../api';
+import {storeData, retrieveData} from '../api/AsyncStorage';
 
 
 import moment from 'moment';
@@ -17,8 +17,8 @@ export default class SearchLink extends Component {
   constructor(props) {
     super(props);
     //setting default state
-    this.state = { isLoading: true, text: '' };
-    this.arrayholder = [];
+    this.state = { isLoading: true, text: '' ,arrayholder:[]};
+    //this.arrayholder = [];
   }
 
   // const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
@@ -32,6 +32,7 @@ _onPress(item) {
       proteins: item.proteins??50, 
       fats: item.fats??20, nutrients:item.nutrients, image:item.image});
   }
+
   componentDidMount() {
     return fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
@@ -50,6 +51,20 @@ _onPress(item) {
         console.error(error);
       });
   }
+
+  // componentDidMount() {
+  //       (async()=>{
+  //           const res = await API.getData('/ingredients')
+  //            const data = await res.data
+  //            data=data[name]
+  //            console.log(data);
+  //               this.setState(
+  //               { 
+  //                 arrayholder: data }
+  //           )
+  //         })()
+  //   }
+  
   SearchFilterFunction(text) {
     
     const newData = this.arrayholder.filter(function(item) {
