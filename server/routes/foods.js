@@ -52,8 +52,15 @@ const foodRoutes = (app, fs) => {
                 // res.send()
                 // break;
                 for (let j in i) {
-                    // if (i[j].ingredients.includes(qu)) {
-                        ans.push({'name':j,'ingredients':i[j]})
+                    for (let k in i[j].ingredients) {
+                        if (qu.includes(i[j].ingredients[k])) {
+                            // console.log(i[j].ingredients[k], j);
+                            ans.push({'name':j,'ingredients':i[j]})
+                            break;
+                        }
+                    }
+                    // if (qu.includes(i[j].ingredients)) {
+                        // console.log(i[j]);
                     // }
                 }
             }

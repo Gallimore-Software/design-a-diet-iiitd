@@ -9,7 +9,7 @@ import MiddleNavBar from '../components/MiddleNavBar';
 import { retrieveData, storeData } from '../api/AsyncStorage';
 import API from '../api';
 
-export default function HomeScreen({navigation}) {
+export default function RecipeScreen({navigation}) {
   let list = [1,2,3,4,5,6,7,8,9]
 
   const [savedItems, useSavedItems] =React.useState([]);
@@ -45,14 +45,21 @@ export default function HomeScreen({navigation}) {
         console.log(name)
         const res = await API.getData('/recipes/'+name)
         const data = await res.data;
+        // console.log
         updateRecipes(data)
 
     })()
     }, [savedItems.join(',')])
 
-  const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
-    navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
-  }
+    ////////THIS LINE CAUSES NAVIGATION ERROR!!
+    const navigateScreen2 = () => {
+      navigation.navigate('RecipeInstructionScreen');
+    }
+
+
+    const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
+      navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
+    }
 
 
   return (
@@ -98,9 +105,10 @@ export default function HomeScreen({navigation}) {
           <ScrollView style={{paddingTop: 20, flex: 4}} horizontal={true}>
           {
             recipes.slice(0,10).map((item)=> {
+              // console.log(item);
               return (
                 <View style={{marginLeft:10}}> 
-                  <RecommendedBox ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen(item.name, 10, 20, 30, 40, 200, '')}  /> 
+                  <RecommendedBox ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen2()}  /> 
                 </View>
               )
               
@@ -116,7 +124,7 @@ export default function HomeScreen({navigation}) {
   );
 }
 
-HomeScreen.navigationOptions = {
+RecipeScreen.navigationOptions = {
   header: null,
 };
 

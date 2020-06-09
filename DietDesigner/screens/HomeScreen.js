@@ -22,6 +22,7 @@ export default function HomeScreen({navigation, routes}) {
       const data = await res.data
       updateRecommendFood(data)
       updateCategorizeFood([...data.sort()])
+      
     })()
   }, [])
 

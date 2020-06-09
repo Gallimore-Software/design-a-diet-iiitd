@@ -44,7 +44,7 @@ export default function CartItems() {
                             <Text style={styles.textbold}>
                                  {item.name.split(' ').slice(-2).join(' ').toUpperCase()}
                             </Text>
-                            <TextInput onSubmitEditing={() => onSubmitEditingHandler(item)} onChangeText={(value) => {changeQuantity(value)}} value={item.quant} style={styles.textinput} placeholder="Enter Quantity"/>
+                            <TextInput onSubmitEditing={() => onSubmitEditingHandler(item)} onChangeText={(value) => {changeQuantity(value)}} value={item.quant} style={styles.textinput} placeholder={item.quant.toString()}/>
                             <Text>
                                 gm
                             </Text>

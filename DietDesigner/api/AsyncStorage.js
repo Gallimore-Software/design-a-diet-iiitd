@@ -20,7 +20,22 @@ let storeData = async (type, object) => {
     }
     else {
         currValue = currValue.split('#');
-        if (!currValue.includes(JSON.stringify(object))){
+        if (type=='cart2') {
+            let flag = 1;
+            console.log('rip');
+            for (let i in currValue) {
+                if (currValue[i].slice(9, 9+object.name.length)===object.name) {
+                    object.quant = parseInt(object.quant) + parseInt(JSON.parse(currValue[i]).quant);
+                    currValue.splice(currValue[i], 1, JSON.stringify(object));
+                    flag = 0;
+                    break;
+                }
+            }
+            if (flag == 1) {
+                currValue.splice(0, 0, JSON.stringify(object))
+            }
+        }
+        else if (!currValue.includes(JSON.stringify(object))){
             currValue.splice(0, 0, JSON.stringify(object))
         }
         await AsyncStorage.setItem(type, currValue.join('#'));
