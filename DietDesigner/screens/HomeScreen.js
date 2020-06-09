@@ -54,7 +54,7 @@ export default function HomeScreen({navigation, routes}) {
   const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
     // name, carbohydrates, proteins, fats
     // navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
-    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:50, fats:20, nutrients:nutrients, image: image});
+    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:proteins, fats:fats, nutrients:nutrients, image: image});
   }
 
 
@@ -72,6 +72,7 @@ export default function HomeScreen({navigation, routes}) {
             {
               recommendedFood.map((item, index)=> {
                 let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
+                proteins = nutrients.proteins;
                 // console.log(name, images[name])
                 let imglink = images[name];
                 return (
@@ -81,14 +82,14 @@ export default function HomeScreen({navigation, routes}) {
                     recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients, imglink})}}
                     saveFunction={()=>{storeData('cart',{name, calories, proteins, carbohydrates, fat, nutrients, imglink})}} 
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
-                    navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), proteins, fat.toFixed(2), nutrients, imglink)}
+                    navigateScreen={()=>navigateScreen(name, calories, carbohydrates.toFixed(2), nutrients.proteins, fat.toFixed(2), nutrients, imglink)}
                     style={styles.scrollHorizontal}
                     imgSrc={imglink}
                     /> 
                     <View style={{paddingHorizontal: 10}}>
                     
                       <Text style={styles.recommendedText}>Calories: {calories.toFixed(2)}</Text> 
-                      <Text style={styles.recommendedText}>Proteins: {proteins??0}</Text> 
+                      <Text style={styles.recommendedText}>Proteins: {nutrients.proteins.toFixed(2)??0}</Text> 
                       <Text style={styles.recommendedText}>Carbs: {carbohydrates.toFixed(2)}</Text> 
                       <Text style={styles.recommendedText}>Fats: {fat.toFixed(2)}</Text> 
                     </View>
@@ -108,12 +109,13 @@ export default function HomeScreen({navigation, routes}) {
           {
             categorizedFood.map((item, index)=> {
               let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
+              proteins = nutrients.proteins;
               // console.log(item);
               let imglink = images[name];
               return (
                 <View key={index} style={{marginLeft:10}}> 
                   <RecommendedBox imgSrc={images[name]} recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fat, nutrients, imglink})}} ingredientName={item.name.split(' ').slice(-2).join(' ').toUpperCase()} 
-                  navigateScreen={()=>navigateScreen(item.name, item.calories, item.carbohydrates.toFixed(2), item.proteins, item.fat.toFixed(2), item.nutrients, imglink)}
+                  navigateScreen={()=>navigateScreen(item.name, item.calories, item.carbohydrates.toFixed(2), item.nutrients.proteins, item.fat.toFixed(2), item.nutrients, imglink)}
                   /> 
                 </View>
               )

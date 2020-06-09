@@ -52,7 +52,7 @@ export default class SearchScreen extends React.Component {
 
     render() {
         const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
-            this.props.navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
+            this.props.navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??proteins, fats: fats??20, nutrients:nutrients, image:image});
           }
 
           return (
@@ -76,9 +76,10 @@ export default class SearchScreen extends React.Component {
                             <RecentIngredientList ingredient="Orange"/>
                         </TouchableOpacity> */}
                         {this.state.recentItems.slice(0,3).map((item, index) => {
-                            let {name, calories, proteins, carbohydrates, fats, nutrients} = item;
+                            let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
+                            proteins = nutrients.proteins;  
                             return (
-                                <TouchableOpacity onPress={()=>navigateScreen(name, calories, carbohydrates, proteins, fats, nutrients)}>                    
+                                <TouchableOpacity onPress={()=>navigateScreen(name, calories, carbohydrates, proteins, fat, nutrients)}>                    
                                     <RecentIngredientList ingredient={item.name.split(' ').slice(-2).join(' ').toUpperCase()}/>
                                 </TouchableOpacity>
                             )
@@ -100,6 +101,7 @@ export default class SearchScreen extends React.Component {
                             {
                             this.state.savedItems.map((item, index)=> {
                                 let {name, calories, proteins, carbohydrates, fat, nutrients} = item;
+                                proteins = nutrients.proteins
                                 let imglink = this.state.images[name];
                                 return (
                                 <View key={index} style={{marginLeft:10}}> 

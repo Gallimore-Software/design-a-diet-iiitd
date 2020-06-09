@@ -74,7 +74,7 @@ export default function HomeScreen({navigation}) {
                     <RecommendedBox
                     imgSrc={imglink}
                     recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fats, nutrients, imglink})}}
-                    navigateScreen={()=>navigateScreen(name, calories, parseFloat(carbohydrates).toFixed(2), proteins, fats.toFixed(2), nutrients, imglink)}
+                    navigateScreen={()=>navigateScreen(name, calories, parseFloat(carbohydrates).toFixed(2), proteins, fats, nutrients, imglink)}
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
                     style={styles.scrollHorizontal} /> 
                     
