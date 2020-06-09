@@ -80,12 +80,12 @@ const foodRoutes = (app, fs) => {
             let array = JSON.parse(data);
             let ans = [];
             array.forEach((item)=>{
-                ans.push([levenshtein(item.name, q), item.name]);
+                ans.push([levenshtein(item.name, q), item.name, JSON.stringify(item.nutrients), item.calories, item.carbohydrates, item.fat, item.image]);
             })
             
             ans.sort().reverse();
 
-            ans = ans.map((item)=>item[1])
+            ans = ans.map((item)=>{return { name: item[1], nutrients: JSON.parse(item[2]), calories: item[3], carbohydrates: item[4], fat: item[5]}})
             res.send(ans);
         });
     } )
