@@ -17,7 +17,7 @@ export default function ButtonArea(props) {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 2,
+    flex: 3,
     flexDirection: 'column',
     // backgroundColor: '#23313d',
     alignSelf: 'stretch',

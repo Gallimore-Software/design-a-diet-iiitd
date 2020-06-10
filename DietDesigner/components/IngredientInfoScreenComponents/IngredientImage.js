@@ -22,7 +22,7 @@ export default function Header(props) {
 const styles = StyleSheet.create({
 
   container: {
-    flex: 2,
+    flex: 3,
     backgroundColor: "#fff",
     justifyContent: 'center',
     alignSelf: 'center',
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 
   imagecontainer: {
     flex: 1,
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#fff",
     width: 150,
     height: 200,
     borderRadius: 10,

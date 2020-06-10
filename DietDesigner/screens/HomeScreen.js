@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 20,
-    
   },
   textMuted: {
     fontWeight: '100'

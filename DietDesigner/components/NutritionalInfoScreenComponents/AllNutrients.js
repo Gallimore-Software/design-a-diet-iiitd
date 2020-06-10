@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect} from 'react';
-import {ActionSheetIOS, Button, View, Text, StyleSheet, TouchableOpacity, ScrollView, Picker, DatePickerAndroid, Platform} from 'react-native';
+import {ActionSheetIOS, Button, View, Text, StyleSheet, TouchableOpacity, ScrollView, Picker, DatePickerAndroid, Platform, Dimensions} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import {Dropdown} from 'react-native-material-dropdown';
+
+
+const screeWidth = Dimensions.get('window').width;
 
 export default function AllNutrients(props) {
 
@@ -292,7 +295,7 @@ export default function AllNutrients(props) {
                 </Text>
             </TouchableOpacity>
             </View>
-            <View style={{backgroundColor:'#fff', width: 260, marginTop: 5,}}>
+            <View style={{backgroundColor:'#fff', marginLeft: 50, width: screeWidth - 100, marginTop: 5,}}>
                 <Dropdown animationDuration={50} disabled={toggle} style={styles.picker} data={pickerdata} value={selectedValue} label={pickerLabel}  onChangeText={ (value, index, data) => setnutrientlist(newlist[index])}/>
             </View>
             <ScrollView>
@@ -334,7 +337,8 @@ const styles = StyleSheet.create({
 
     },
     picker: {
-        marginLeft: 10,
+        marginLeft: 5,
+
 
     }
 })

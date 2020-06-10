@@ -52,19 +52,29 @@ const foodRoutes = (app, fs) => {
                 // res.send()
                 // break;
                 for (let j in i) {
+                    let points = 0;
                     // console.log(j, i[j])
                     for (let k in i[j].ingredients) {
-                        if (qu.includes(i[j].ingredients[k])) {
-                            ans.push({'name':j,'ingredients':i[j].ingredients,'process':i[j].process, 'utensils':i[j].utensils, 'image':i[j].image})
-                            // console.log(ans);
-                            break;
+                        if (qu.includes(i[j].ingredients[k]) && i[j].ingredients[k] != '') {
+                            points ++;
+                            
+
                         }
+                    }
+                    if (points >= 1) {
+                        ans.push({'name':j,'ingredients':i[j].ingredients,'process':i[j].process, 'utensils':i[j].utensils, 'image':i[j].image, 'points':points})
                     }
                     // if (qu.includes(i[j].ingredients)) {
                         // console.log(i[j]);
                     // }
                 }
             }
+
+            ans.sort((a, b) => {
+                return (
+                    b.points-a.points
+                )
+            })
             console.log('done');
             res.send(ans);
         });
