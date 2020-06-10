@@ -17,7 +17,7 @@ export default class SearchLink extends Component {
   constructor(props) {
     super(props);
     //setting default state
-    this.state = { isLoading: true, text: '' ,arrayholder:[]};
+    this.state = { isLoading: false, text: '' ,arrayholder:[], dataSource:[]};
     //this.arrayholder = [];
   }
 
@@ -26,59 +26,27 @@ export default class SearchLink extends Component {
   //     }
 
 _onPress(item) {
+    console.log(item)
     this.props.navigation.navigate('IngredientInfoScreen', 
-      {ingredientName: item.name??'',calories: item.calories, 
+      {ingredientName: item.title.split(' ').slice(-2).join(' ').toUpperCase()??'',calories: item.calories, 
       carbohydrates: item.carbohydrates??100, 
-      proteins: item.proteins??50, 
-      fats: item.fats??20, nutrients:item.nutrients, image:item.image});
+      proteins: item.nutrients.proteins??50, 
+      fats: item.fat??20, nutrients:item.nutrients, image:item.image??''});
   }
 
-  componentDidMount() {
-    return fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState(
-          {
-            isLoading: false,
-            dataSource: responseJson
-          },
-          function() {
-            this.arrayholder = responseJson;
-          }
-        );
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
-
-  // componentDidMount() {
-  //       (async()=>{
-  //           const res = await API.getData('/ingredients')
-  //            const data = await res.data
-  //            data=data[name]
-  //            console.log(data);
-  //               this.setState(
-  //               { 
-  //                 arrayholder: data }
-  //           )
-  //         })()
-  //   }
   
-  SearchFilterFunction(text) {
-    
-    const newData = this.arrayholder.filter(function(item) {
-     
-      const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-    });
-    this.setState({
-      
-      dataSource: newData,
-      text: text,
-    });
+
+  fetchData = ()=>{
+    API.getData('/recs/'+this.state.text).then(res=>{
+      return res.data
+    }).then(res=>{
+      this.setState({dataSource: res.map((item, index)=> {
+        return {id: index, title: item.name.split(' ').join(' ').toUpperCase(), nutrients: item.nutrients, fat: item.fat, carbohydrates: item.carbohydrates, calories:item.calories}
+
+      })})
+    })
   }
+  
   ListViewItemSeparator = () => {
     
     return (
@@ -92,6 +60,7 @@ _onPress(item) {
     );
   };
 renderItem = ({ item }) => {
+    // console.log(item)
     return (
       <TouchableOpacity onPress={() => this._onPress(item)}>
         <View style={styles.container}>
@@ -119,8 +88,8 @@ renderItem = ({ item }) => {
         <TextInput
           style={styles.textInputStyle}
           autoFocus={true}
-
-          onChangeText={text => this.SearchFilterFunction(text)}
+          onSubmitEditing={this.fetchData}
+          onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           placeholder="  What's your Ingredient?"
         />
