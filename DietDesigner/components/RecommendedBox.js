@@ -24,7 +24,15 @@ let removeButton = (clickFunction) => {
 }
 
 
+
 export default function RecommendedBox(props) {
+
+
+  let image = props.imgSrc;
+  if (image == '' || image== 'NF') {
+    image = 'https://upload.wikimedia.org/wikipedia/commons/2/28/Galbi-tang_ingredients.jpg';
+  }
+
   if (props.imgSrc) {
     // console.log(props.imgSrc)
   }
@@ -43,7 +51,7 @@ export default function RecommendedBox(props) {
                 props.saveButton===true ? 
                 saveButton(props.saveFunction) : (props.removeButton===true ? removeButton(props.removeFunction) : <Text />)     
               } */}
-               <ImageBackground style={styles.image} source={{uri: props.imgSrc}}>
+               <ImageBackground style={styles.image} source={{uri: image}}>
                 {props.saveButton===true ? 
                 saveButton(props.saveFunction) : (props.removeButton===true ? removeButton(props.removeFunction) : <Text />)  }   
                </ImageBackground>
