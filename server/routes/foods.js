@@ -4,7 +4,7 @@ const foodRoutes = (app, fs) => {
     const dataPath = './data/foods.json';
     const imagePath = './data/json_out.json';
     const imgFile = './data/img-data.csv';
-    const recipeFile = './data/recipe.json';
+    const recipeFile = './data/recipe3.json';
     const levenshtein = require('js-levenshtein');
 
     // READ
@@ -52,10 +52,11 @@ const foodRoutes = (app, fs) => {
                 // res.send()
                 // break;
                 for (let j in i) {
+                    // console.log(j, i[j])
                     for (let k in i[j].ingredients) {
                         if (qu.includes(i[j].ingredients[k])) {
-                            // console.log(i[j].ingredients[k], j);
-                            ans.push({'name':j,'ingredients':i[j]})
+                            ans.push({'name':j,'ingredients':i[j].ingredients,'process':i[j].process, 'utensils':i[j].utensils, 'image':i[j].image})
+                            // console.log(ans);
                             break;
                         }
                     }
@@ -64,10 +65,13 @@ const foodRoutes = (app, fs) => {
                     // }
                 }
             }
+            console.log('done');
             res.send(ans);
         });
         // res.send([])
     } )
+
+
 
     // recommendations
     app.get('/recs/:query', async(req, res)=>{

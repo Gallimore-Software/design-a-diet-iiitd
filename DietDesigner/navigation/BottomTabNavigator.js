@@ -8,6 +8,9 @@ import RecipeScreen from '../screens/RecipeScreen';
 import HeaderImageLogo from '../components/HeaderLogo.js';
 import SearchScreenStackNavigator from './SearchScreenStackNavigator';
 import HomeScreenStackNavigator from './HomeScreenStackNavigator';
+import RecipeStackNavigator from './RecipeStackNavigator';
+import CartStackNavigator from './CartStackNavigator';
+
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
@@ -37,7 +40,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Diet"
-        component={RecipeScreen}
+        component={RecipeStackNavigator}
         options={{
           title: 'Diets',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
@@ -45,7 +48,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Cart"
-        component={CartScreen}
+        component={CartStackNavigator}
         options={{
           title: 'Cart',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-cart" />,
@@ -80,8 +83,8 @@ function showHeader(route) {
     case 'Search':
       return false
     case 'Diet':
-      return true
+      return false
     case 'Cart':
-      return true
+      return false
   }
 }

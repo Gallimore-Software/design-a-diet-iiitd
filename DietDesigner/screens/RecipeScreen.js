@@ -13,7 +13,6 @@ export default function RecipeScreen({navigation}) {
   let list = [1,2,3,4,5,6,7,8,9]
 
   const [savedItems, useSavedItems] =React.useState([]);
-  const [images, updateImages] = React.useState([]);
   const [recipes, updateRecipes] = React.useState([]);
 
     React.useEffect(()=>{
@@ -30,13 +29,6 @@ export default function RecipeScreen({navigation}) {
         })()
     })
 
-    React.useEffect(()=>{
-      (async()=>{
-        const res = await API.getData('/images')
-        const data = await res.data
-        updateImages(data);
-      })()
-    }, [])
 
     React.useEffect(()=>{
     
@@ -51,9 +43,9 @@ export default function RecipeScreen({navigation}) {
     })()
     }, [savedItems.join(',')])
 
-    ////////THIS LINE CAUSES NAVIGATION ERROR!!
-    const navigateScreen2 = () => {
-      navigation.navigate('RecipeInstructionScreen');
+
+    const navigateScreen2 = (ingredients, process, utensils) => {
+      navigation.navigate('RecipeInstructionScreen', {ingredients:ingredients, process:process, utensils:utensils});
     }
 
 
@@ -74,14 +66,14 @@ export default function RecipeScreen({navigation}) {
             {
               savedItems.map((item, index)=> {
                 item = JSON.parse(item);
-                let {name, calories, proteins, carbohydrates, fats, nutrients} = item;
-                let imglink = images[name];
+                let {name, calories, proteins, carbohydrates, fats, nutrients, imagelink, quant} = item;
+                // console.log(name);
                 return (
                   <View key={index} style={{marginLeft:10}}> 
                     <RecommendedBox
-                    imgSrc={imglink}
-                    recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fats, nutrients, imglink})}}
-                    navigateScreen={()=>navigateScreen(name, calories, parseFloat(carbohydrates).toFixed(2), proteins, fats, nutrients, imglink)}
+                    imgSrc={imagelink}
+                    recentFunction = {() => {storeData('recent', {name, calories, proteins, carbohydrates, fats, nutrients, imagelink})}}
+                    navigateScreen={()=>navigateScreen(name, calories, parseFloat(carbohydrates).toFixed(2), proteins, fats, nutrients, imagelink)}
                     ingredientName={name.split(' ').slice(-2).join(' ').toUpperCase()} 
                     style={styles.scrollHorizontal} /> 
                     
@@ -108,7 +100,7 @@ export default function RecipeScreen({navigation}) {
               // console.log(item);
               return (
                 <View style={{marginLeft:10}}> 
-                  <RecommendedBox ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen2()}  /> 
+                  <RecommendedBox imgSrc={item.image} ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen2(item.ingredients, item.process, item.utensils)}  /> 
                 </View>
               )
               

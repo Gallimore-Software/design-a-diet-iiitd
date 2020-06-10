@@ -1,10 +1,14 @@
 import * as React from 'react';
+import {View, Text} from 'react-native';
 
-export default function RecipeInstructionScreen() {
+
+export default function RecipeInstructionScreen({navigation, route}) {
     return (
         <View>
             <Text>
-                yooo
+                {route.params.ingredients}
+                {route.params.process}
+                {route.params.utensils}
             </Text>
         </View>
     )
