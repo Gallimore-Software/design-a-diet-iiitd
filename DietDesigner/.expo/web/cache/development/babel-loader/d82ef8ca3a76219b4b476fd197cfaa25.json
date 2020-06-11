@@ -1,1 +1,3 @@
-{"ast":null,"code":"import * as React from 'react';\nvar LinkingContext = React.createContext({\n  options: undefined\n});\nexport default LinkingContext;","map":{"version":3,"sources":["LinkingContext.tsx"],"names":["LinkingContext","options","undefined"],"mappings":"AAAA,OAAO,KAAP,KAAA,MAAA,OAAA;AAGA,IAAMA,cAAc,GAAG,KAAK,CAAL,aAAA,CAEpB;AAAEC,EAAAA,OAAO,EAAEC;AAAX,CAFoB,CAAvB;AAIA,eAAA,cAAA","sourcesContent":["import * as React from 'react';\nimport { LinkingOptions } from './types';\n\nconst LinkingContext = React.createContext<{\n  options: LinkingOptions | undefined;\n}>({ options: undefined });\n\nexport default LinkingContext;\n"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f3f83926335dd10344ae33653ca65f9228d796b8da9a99fd71dea9f3c86ea9c3
+size 683

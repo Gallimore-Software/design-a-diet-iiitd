@@ -1,1 +1,3 @@
-{"ast":null,"code":"import createIconSet from \"./createIconSet\";\nimport font from \"./vendor/react-native-vector-icons/Fonts/Entypo.ttf\";\nimport glyphMap from \"./vendor/react-native-vector-icons/glyphmaps/Entypo.json\";\nexport default createIconSet(glyphMap, 'entypo', font);","map":{"version":3,"sources":["../src/Entypo.ts"],"names":[],"mappings":"AAAA,OAAO,aAAP;AACA,OAAO,IAAP;AACA,OAAO,QAAP;AAEA,eAAe,aAAa,CAAC,QAAD,EAAW,QAAX,EAAqB,IAArB,CAA5B","sourcesContent":["import createIconSet from './createIconSet';\nimport font from './vendor/react-native-vector-icons/Fonts/Entypo.ttf';\nimport glyphMap from './vendor/react-native-vector-icons/glyphmaps/Entypo.json';\n\nexport default createIconSet(glyphMap, 'entypo', font);\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d290a5d6fd4e9d810b2e71db94a513ddb934419943b46fc46e13f2c58d987954
+size 791

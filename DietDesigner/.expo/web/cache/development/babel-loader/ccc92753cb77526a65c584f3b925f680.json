@@ -1,1 +1,3 @@
-{"ast":null,"code":"import createIconSet from \"./createIconSet\";\nimport font from \"./vendor/react-native-vector-icons/Fonts/Zocial.ttf\";\nimport glyphMap from \"./vendor/react-native-vector-icons/glyphmaps/Zocial.json\";\nexport default createIconSet(glyphMap, 'zocial', font);","map":{"version":3,"sources":["../src/Zocial.ts"],"names":[],"mappings":"AAAA,OAAO,aAAP;AACA,OAAO,IAAP;AACA,OAAO,QAAP;AAEA,eAAe,aAAa,CAAC,QAAD,EAAW,QAAX,EAAqB,IAArB,CAA5B","sourcesContent":["import createIconSet from './createIconSet';\nimport font from './vendor/react-native-vector-icons/Fonts/Zocial.ttf';\nimport glyphMap from './vendor/react-native-vector-icons/glyphmaps/Zocial.json';\n\nexport default createIconSet(glyphMap, 'zocial', font);\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4111a7c601daa78588434590ce5614578e9a7d6df48e9668fac51648d7b83042
+size 791

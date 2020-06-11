@@ -1,1 +1,3 @@
-{"ast":null,"code":"export * from \"./AdapterProxy\";\nexport { default as deprecate } from \"./deprecate\";","map":{"version":3,"sources":["../src/index.ts"],"names":[],"mappings":"AAAA;AACA,SAAS,OAAO,IAAI,SAApB","sourcesContent":["export * from './AdapterProxy';\nexport { default as deprecate } from './deprecate';\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:903b18bdce6d117ee20efb878259f9c842f0f2089e018194b3f40730e9ffc7f2
+size 375

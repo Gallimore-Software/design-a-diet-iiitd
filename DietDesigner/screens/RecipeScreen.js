@@ -44,8 +44,8 @@ export default function RecipeScreen({navigation}) {
     }, [savedItems.join(',')])
 
 
-    const navigateScreen2 = (ingredients, process, utensils) => {
-      navigation.navigate('RecipeInstructionScreen', {ingredients:ingredients, process:process, utensils:utensils});
+    const navigateScreen2 = (ingredients, process, utensils, steps) => {
+      navigation.navigate('RecipeInstructionScreen', {ingredients:ingredients, process:process, utensils:utensils, steps:steps});
     }
 
 
@@ -97,10 +97,10 @@ export default function RecipeScreen({navigation}) {
           <ScrollView style={{paddingTop: 20, flex: 4}} horizontal={true}>
           {
             recipes.slice(0,10).map((item)=> {
-              // console.log(item);
+              // console.log(item.steps);
               return (
                 <View style={{marginLeft:10}}> 
-                  <RecommendedBox imgSrc={item.image} ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen2(item.ingredients, item.process, item.utensils)}  /> 
+                  <RecommendedBox imgSrc={item.image} ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen2(item.ingredients, item.process, item.utensils, item.steps)}  /> 
                 </View>
               )
               

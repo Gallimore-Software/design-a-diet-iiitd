@@ -1,1 +1,3 @@
-{"ast":null,"code":"import ReactNativePlatform from \"react-native-web/dist/exports/Platform\";\nvar Platform = {\n  OS: ReactNativePlatform.OS\n};\nexport default Platform;","map":{"version":3,"sources":["../src/Platform.ts"],"names":[],"mappings":";AAEA,IAAM,QAAQ,GAAG;AACf,EAAA,EAAE,EAAE,mBAAmB,CAAC;AADT,CAAjB;AAIA,eAAe,QAAf","sourcesContent":["import { Platform as ReactNativePlatform } from 'react-native';\n\nconst Platform = {\n  OS: ReactNativePlatform.OS,\n};\n\nexport default Platform;\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:da6583bcc4fa9532218421569948f6667222ae43a79f88b209ebd9188479c7e4
+size 555

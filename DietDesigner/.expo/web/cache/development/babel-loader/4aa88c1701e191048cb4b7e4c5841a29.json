@@ -1,1 +1,3 @@
-{"ast":null,"code":"var initialWindowSafeAreaInsets = null;\nexport default initialWindowSafeAreaInsets;","map":{"version":3,"sources":["InitialWindowSafeAreaInsets.web.ts"],"names":["initialWindowSafeAreaInsets"],"mappings":"AAEA,IAAMA,2BAA8C,GAApD,IAAA;AACA,eAAA,2BAAA","sourcesContent":["import { EdgeInsets } from './SafeArea.types';\n\nconst initialWindowSafeAreaInsets: EdgeInsets | null = null;\nexport default initialWindowSafeAreaInsets;\n"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:977f1a5630a739ff3f1855841f04742909728f4f8f409bddbbe0709e13707f72
+size 488

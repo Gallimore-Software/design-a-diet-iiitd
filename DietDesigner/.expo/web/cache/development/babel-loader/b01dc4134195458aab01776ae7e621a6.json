@@ -1,1 +1,3 @@
-{"ast":null,"code":"import * as React from 'react';\nexport default React.createContext(undefined);","map":{"version":3,"sources":["CardAnimationContext.tsx"],"names":["React"],"mappings":"AAAA,OAAO,KAAP,KAAA,MAAA,OAAA;AAGA,eAAeA,KAAK,CAALA,aAAAA,CAAf,SAAeA,CAAf","sourcesContent":["import * as React from 'react';\nimport { StackCardInterpolationProps } from '../types';\n\nexport default React.createContext<StackCardInterpolationProps | undefined>(\n  undefined\n);\n"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e6af15e6eaa3162afca1017427562522ac27123aafe666add9f4a0978cceaf28
+size 510

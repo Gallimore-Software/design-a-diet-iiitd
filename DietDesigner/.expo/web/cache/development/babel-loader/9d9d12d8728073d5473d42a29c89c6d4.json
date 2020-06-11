@@ -1,1 +1,3 @@
-{"ast":null,"code":"import FlatList from \"../../vendor/react-native/FlatList\";\nexport default FlatList;","map":{"version":3,"sources":["/Users/administrator/Desktop/design-a-diet-iiitd/DietDesigner/node_modules/react-native-web/dist/exports/FlatList/index.js"],"names":["FlatList"],"mappings":"AASA,OAAOA,QAAP;AACA,eAAeA,QAAf","sourcesContent":["/**\n * Copyright (c) Nicolas Gallagher.\n * Copyright (c) Facebook, Inc. and its affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n *\n * \n */\nimport FlatList from '../../vendor/react-native/FlatList';\nexport default FlatList;"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ae2e7cf25dd776f344e9e4511813917069528e049f8f739c6085768768b33288
+size 714

@@ -1,1 +1,3 @@
-{"ast":null,"code":"import ViewPropTypes from \"../View/ViewPropTypes\";\nexport default ViewPropTypes;","map":{"version":3,"sources":["/Users/administrator/Desktop/design-a-diet-iiitd/DietDesigner/node_modules/react-native-web/dist/exports/ViewPropTypes/index.js"],"names":["ViewPropTypes"],"mappings":"AAAA,OAAOA,aAAP;AACA,eAAeA,aAAf","sourcesContent":["import ViewPropTypes from '../View/ViewPropTypes';\nexport default ViewPropTypes;"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:819e9d0bb44debd91679cc48dd24a90582e95c9e1fce54eab2da9968c01c894d
+size 477

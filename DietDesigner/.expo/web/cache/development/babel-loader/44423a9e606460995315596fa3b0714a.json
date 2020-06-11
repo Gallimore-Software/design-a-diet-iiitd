@@ -1,1 +1,3 @@
-{"ast":null,"code":"import createIconSet from \"./createIconSet\";\nimport font from \"./vendor/react-native-vector-icons/Fonts/EvilIcons.ttf\";\nimport glyphMap from \"./vendor/react-native-vector-icons/glyphmaps/EvilIcons.json\";\nexport default createIconSet(glyphMap, 'evilicons', font);","map":{"version":3,"sources":["../src/EvilIcons.ts"],"names":[],"mappings":"AAAA,OAAO,aAAP;AACA,OAAO,IAAP;AACA,OAAO,QAAP;AAEA,eAAe,aAAa,CAAC,QAAD,EAAW,WAAX,EAAwB,IAAxB,CAA5B","sourcesContent":["import createIconSet from './createIconSet';\nimport font from './vendor/react-native-vector-icons/Fonts/EvilIcons.ttf';\nimport glyphMap from './vendor/react-native-vector-icons/glyphmaps/EvilIcons.json';\n\nexport default createIconSet(glyphMap, 'evilicons', font);\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:8355e7125db24d240af802e4e6daa886210625063cd0ca544f7d9305988a4b25
+size 812

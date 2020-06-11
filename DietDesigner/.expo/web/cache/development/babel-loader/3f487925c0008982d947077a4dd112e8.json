@@ -1,1 +1,3 @@
-{"ast":null,"code":"import createIconSet from \"./createIconSet\";\nimport font from \"./vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf\";\nimport glyphMap from \"./vendor/react-native-vector-icons/glyphmaps/MaterialIcons.json\";\nexport default createIconSet(glyphMap, 'material', font);","map":{"version":3,"sources":["../src/MaterialIcons.ts"],"names":[],"mappings":"AAAA,OAAO,aAAP;AACA,OAAO,IAAP;AACA,OAAO,QAAP;AAEA,eAAe,aAAa,CAAC,QAAD,EAAW,UAAX,EAAuB,IAAvB,CAA5B","sourcesContent":["import createIconSet from './createIconSet';\nimport font from './vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf';\nimport glyphMap from './vendor/react-native-vector-icons/glyphmaps/MaterialIcons.json';\n\nexport default createIconSet(glyphMap, 'material', font);\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e77ac9f2a6e2f329c13af8cd23b2cd51466ff6068ab3ed541c27c1b9016a6c31
+size 830

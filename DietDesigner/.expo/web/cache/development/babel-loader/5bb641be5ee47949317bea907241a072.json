@@ -1,1 +1,3 @@
-{"ast":null,"code":"import createIconSet from \"./createIconSet\";\nimport font from \"./vendor/react-native-vector-icons/Fonts/Ionicons.ttf\";\nimport glyphMap from \"./vendor/react-native-vector-icons/glyphmaps/Ionicons.json\";\nexport default createIconSet(glyphMap, 'ionicons', font);","map":{"version":3,"sources":["../src/Ionicons.ts"],"names":[],"mappings":"AAAA,OAAO,aAAP;AACA,OAAO,IAAP;AACA,OAAO,QAAP;AAEA,eAAe,aAAa,CAAC,QAAD,EAAW,UAAX,EAAuB,IAAvB,CAA5B","sourcesContent":["import createIconSet from './createIconSet';\nimport font from './vendor/react-native-vector-icons/Fonts/Ionicons.ttf';\nimport glyphMap from './vendor/react-native-vector-icons/glyphmaps/Ionicons.json';\n\nexport default createIconSet(glyphMap, 'ionicons', font);\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4257af7e653d1adb8341a84c1a202a48dc6512572da01fe0b5d7a1ff3e4a16ca
+size 805

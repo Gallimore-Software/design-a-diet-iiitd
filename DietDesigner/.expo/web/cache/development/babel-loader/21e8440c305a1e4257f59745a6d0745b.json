@@ -1,1 +1,3 @@
-{"ast":null,"code":"export * from \"./SplashScreen\";","map":{"version":3,"sources":["../src/index.ts"],"names":[],"mappings":"AAAA","sourcesContent":["export * from './SplashScreen';\n"],"sourceRoot":""},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4a8db14ff35a44ef6b677c67a14478f2d9d9fce190ec19a7506d367b8ce40d43
+size 241

@@ -62,7 +62,7 @@ const foodRoutes = (app, fs) => {
                         }
                     }
                     if (points >= 1) {
-                        ans.push({'name':j,'ingredients':i[j].ingredients,'process':i[j].process, 'utensils':i[j].utensils, 'image':i[j].image, 'points':points})
+                        ans.push({'name':j,'ingredients':i[j].ingredients,'process':i[j].process, 'utensils':i[j].utensils, 'image':i[j].image, 'points':points, 'steps': i[j].steps})
                     }
                     // if (qu.includes(i[j].ingredients)) {
                         // console.log(i[j]);

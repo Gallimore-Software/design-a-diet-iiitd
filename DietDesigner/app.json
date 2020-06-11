@@ -1,32 +1,3 @@
-{
-  "expo": {
-    "name": "DietDesigner",
-    "slug": "DietDesigner",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
-    }
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:de8a2cbef09017d64b2c7019d239335cd3420cd258ddbd3b92577b2fc4e5b693
+size 650

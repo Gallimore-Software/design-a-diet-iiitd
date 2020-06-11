@@ -1,1 +1,3 @@
-{"ast":null,"code":"import RNGestureHandlerModule from \"./RNGestureHandlerModule\";\nexport default RNGestureHandlerModule.Direction;","map":{"version":3,"sources":["/Users/administrator/Desktop/design-a-diet-iiitd/DietDesigner/node_modules/react-native-gesture-handler/Directions.js"],"names":["RNGestureHandlerModule","Direction"],"mappings":"AAAA,OAAOA,sBAAP;AAEA,eAAeA,sBAAsB,CAACC,SAAtC","sourcesContent":["import RNGestureHandlerModule from './RNGestureHandlerModule';\n\nexport default RNGestureHandlerModule.Direction;\n"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:510f3c02ccd80ff57b943dddd924c315616377800cc6c74b52dd912a2e75d04a
+size 569

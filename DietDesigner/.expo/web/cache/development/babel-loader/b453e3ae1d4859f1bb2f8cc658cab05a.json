@@ -1,1 +1,3 @@
-{"ast":null,"code":"export { default as Swipeable } from \"./Swipeable\";\nexport { default as DrawerLayout } from \"./DrawerLayout\";\nexport * from \"./GestureHandler\";\nexport * from \"./touchables\";","map":{"version":3,"sources":["/Users/administrator/Desktop/design-a-diet-iiitd/DietDesigner/node_modules/react-native-gesture-handler/index.js"],"names":["default","Swipeable","DrawerLayout"],"mappings":"AAAA,SAASA,OAAO,IAAIC,SAApB;AACA,SAASD,OAAO,IAAIE,YAApB;AACA;AACA","sourcesContent":["export { default as Swipeable } from './Swipeable';\nexport { default as DrawerLayout } from './DrawerLayout';\nexport * from './GestureHandler';\nexport * from './touchables';\n"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e0672262eabc708b024e917e39c14c76aad7963fa821e3fbb8ab8ade308ff0aa
+size 715

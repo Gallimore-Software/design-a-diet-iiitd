@@ -1,1 +1,3 @@
-{"ast":null,"code":"import React from 'react';\nimport View from \"react-native-web/dist/exports/View\";\nexport default View;","map":{"version":3,"sources":["/Users/administrator/Desktop/design-a-diet-iiitd/DietDesigner/node_modules/react-native-gesture-handler/GestureHandlerRootView.js"],"names":["React","View"],"mappings":"AAAA,OAAOA,KAAP,MAAkB,OAAlB;;AAGA,eAAeC,IAAf","sourcesContent":["import React from 'react';\nimport { View } from 'react-native';\n\nexport default View;\n"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7718deec7c26e2d8f649ffd0fc17d2c41963ddd145490a8ec7b43b24c21ad616
+size 523

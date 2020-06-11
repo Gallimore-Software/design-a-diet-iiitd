@@ -1,18 +1,3 @@
-{
-  "name": "design-a-diet-server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "IIITD",
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "csv-parser": "^2.3.2",
-    "express": "^4.17.1",
-    "js-levenshtein": "^1.1.6",
-    "neat-csv": "^5.2.0",
-    "nodemon": "^2.0.4"
-  },
-  "scripts": {
-    "start": "nodemon index.js"
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:1dfa9c97e0a08291bc3eca06826587d197384fcc3adb747c8198a30c55cf36a9
+size 383

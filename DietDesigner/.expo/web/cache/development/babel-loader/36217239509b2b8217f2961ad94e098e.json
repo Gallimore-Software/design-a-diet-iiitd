@@ -1,1 +1,3 @@
-{"ast":null,"code":"import * as React from 'react';\nexport default React.createContext(null);","map":{"version":3,"sources":["GestureHandlerRefContext.tsx"],"names":["React"],"mappings":"AAAA,OAAO,KAAP,KAAA,MAAA,OAAA;AAEA,eAAeA,KAAK,CAALA,aAAAA,CAAf,IAAeA,CAAf","sourcesContent":["import * as React from 'react';\n\nexport default React.createContext<React.Ref<\n  import('react-native-gesture-handler').PanGestureHandler\n> | null>(null);\n"]},"metadata":{},"sourceType":"module"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:b2b510d1cb837e69d6552d5011027772f26cf6947641c01aad09b3dafffca185
+size 482
