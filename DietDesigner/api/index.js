@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'http://10.0.2.2:3001'
+const BASE_URL = 'https://cosylab.iiitd.edu.in/design-a-diet/'
 
 let customAxios = axios.create({
     baseURL: BASE_URL

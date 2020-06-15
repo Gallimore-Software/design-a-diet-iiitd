@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:de8a2cbef09017d64b2c7019d239335cd3420cd258ddbd3b92577b2fc4e5b693
-size 650
+{
+    "expo": {
+     "name": "Nutrihacks",
+     "icon": "./assets/images/icon.png",
+     "version": "1.0.0",
+     "slug": "nutrihacks",
+     "ios": {
+       "bundleIdentifier": "edu.cosylab.iiitd",
+       "buildNumber": "1.0.0"
+     },
+     "android": {
+       "package": "edu.cosylab.iiitd",
+       "versionCode": 1,
+       "permissions": [ "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION", "CAMERA", "MANAGE_DOCUMENTS", "READ_CONTACTS", "READ_CALENDAR", "WRITE_CALENDAR", "READ_EXTERNAL_STORAGE", "READ_INTERNAL_STORAGE", "READ_PHONE_STATE", "RECORD_AUDIO", "USE_FINGERPRINT", "VIBRATE", "WAKE_LOCK", "WRITE_EXTERNAL_STORAGE", "com.anddoes.launcher.permission.UPDATE_COUNT", "com.android.launcher.permission.INSTALL_SHORTCUT", "com.google.android.c2dm.permission.RECEIVE", "com.google.android.gms.permission.ACTIVITY_RECOGNITION", "com.google.android.providers.gsf.permission.READ_GSERVICES", "com.htc.launcher.permission.READ_SETTINGS", "com.htc.launcher.permission.UPDATE_SHORTCUT", "com.majeur.launcher.permission.UPDATE_BADGE", "com.sec.android.provider.badge.permission.READ", "com.sec.android.provider.badge.permission.WRITE", "com.sonyericsson.home.permission.BROADCAST_BADGE" ]
+     }
+    }
+  }
