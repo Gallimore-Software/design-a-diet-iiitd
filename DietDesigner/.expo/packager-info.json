@@ -1,9 +1,3 @@
-{
-  "expoServerPort": 19004,
-  "packagerPort": 19001,
-  "packagerPid": 15768,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "devToolsPort": 19003
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:07a4c0ff201b32b53cf14858fc3fe3875baf472a87fba6338b9b4404767f60bf
+size 182

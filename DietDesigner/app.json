@@ -1,17 +1,3 @@
-{
-    "expo": {
-     "name": "DietDesigner",
-     "icon": "./assets/images/icon.png",
-     "version": "1.0.0",
-     "slug": "DietDesigner",
-     "ios": {
-       "bundleIdentifier": "edu.cosylab.iiitd",
-       "buildNumber": "1.0.0"
-     },
-     "android": {
-       "package": "edu.cosylab.iiitd",
-       "versionCode": 1
-     },
-     "scheme": "https"
-    }
-  }
+version https://git-lfs.github.com/spec/v1
+oid sha256:f0049eebe417678af2211e6e30565f853e149465a8d582f6c5c46e09f61f7812
+size 361
