@@ -7,7 +7,7 @@ Figma Link: https://www.figma.com/file/aXWr5NgxvxNFU7U3vwuxS0/Design-A-Diet?node
 
 1. To run the server, 
     - `yarn install`
-    - `node index.js'
+    - `node index.js`
 
 2. Endpoints
     - `http://localhost:3001/food` GET
