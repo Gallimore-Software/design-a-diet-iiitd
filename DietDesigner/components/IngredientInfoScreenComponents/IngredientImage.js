@@ -6,11 +6,15 @@ import API from '../../api'
 
 export default function Header(props) {
 
+  let image = props.image;
+  if (image == '' || image== 'NF') {
+    image = 'https://upload.wikimedia.org/wikipedia/commons/2/28/Galbi-tang_ingredients.jpg';
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.imagecontainer} >
-      <ImageBackground style={styles.image} source={{uri: props.image}}>
+      <ImageBackground style={styles.image} source={{uri: image}}>
       </ImageBackground>
       </View>
     </View>
@@ -40,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: 150,
-    height: 100,
+    height: 130,
     justifyContent: 'center',
     alignSelf: 'center',
     resizeMode: 'cover'

@@ -52,7 +52,7 @@ export default class SearchScreen extends React.Component {
 
     render() {
         const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
-            this.props.navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??proteins, fats: fats??20, nutrients:nutrients, image:image});
+            this.props.navigation.navigate('Ingredient Info', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??proteins, fats: fats??20, nutrients:nutrients, image:image});
           }
 
           return (

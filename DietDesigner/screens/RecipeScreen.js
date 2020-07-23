@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Suspense} from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -8,11 +9,12 @@ import MiddleNavBar from '../components/MiddleNavBar';
 import { retrieveData, storeData } from '../api/AsyncStorage';
 import API from '../api';
 
+
 export default function RecipeScreen({navigation}) {
   let list = [1,2,3,4,5,6,7,8,9]
 
   const [savedItems, useSavedItems] =React.useState([]);
-  const [recipes, updateRecipes] = React.useState([]);
+  const [recipes, updateRecipes] = React.useState(["0","0","0","0","0","0","0","0","0","0"]);
 
     React.useEffect(()=>{
         (async () => {
@@ -32,24 +34,28 @@ export default function RecipeScreen({navigation}) {
     React.useEffect(()=>{
     
       (async () => {
+        updateRecipes(["1","1","1","1","1","1","1","1","1","1"]);
         let name = savedItems.map((item)=>JSON.parse(item).name.toLowerCase())
-        console.log(name)
-        const res = await API.getData('/recipes/'+name)
-        const data = await res.data;
-        // console.log
-        updateRecipes(data)
+        const res = await API.getData('/recipes/'+name).catch(() => {
+          updateRecipes(["0","0","0","0","0","0","0","0","0","0"]);
+        })
+        if (res != undefined)  {
+          const data = await res.data;
+
+          updateRecipes(data)
+        }
 
     })()
     }, [savedItems.join(',')])
 
 
     const navigateScreen2 = (ingredients, process, utensils, steps) => {
-      navigation.navigate('RecipeInstructionScreen', {ingredients:ingredients, process:process, utensils:utensils, steps:steps});
+      navigation.navigate('Recipe Instruction', {ingredients:ingredients, process:process, utensils:utensils, steps:steps});
     }
 
 
     const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
-      navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
+      navigation.navigate('Ingredient Info', {ingredientName: name??'',calories: calories, carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20, nutrients:nutrients, image:image});
     }
 
 
@@ -92,17 +98,34 @@ export default function RecipeScreen({navigation}) {
         <TouchableOpacity><Text style={[styles.textStyle, styles.textBold]}>Choose Recipe</Text></TouchableOpacity>
         
       </View>
-
           <ScrollView style={{paddingTop: 20, flex: 4}} horizontal={true}>
+          
           {
+            
             recipes.slice(0,10).map((item)=> {
-              // console.log(item.steps);
-              return (
+              if (item === "0") {
+                return (
+                  <View>
+
+                  </View>
+                )
+              }
+
+              if (item === "1") {
+                return (
                 <View style={{marginLeft:10}}> 
-                  <RecommendedBox imgSrc={item.image} ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen2(item.ingredients, item.process, item.utensils, item.steps)}  /> 
+                  <RecommendedBox imgSrc={"./assets/images/loading_icon.gif"} ingredientName={"Loading..."} recentFunction={()=>{}} navigateScreen={()=>{}}  /> 
                 </View>
-              )
-              
+
+                )
+              }
+              else {
+                return (
+                  <View style={{marginLeft:10}}> 
+                    <RecommendedBox imgSrc={item.image} ingredientName={item.name} recentFunction={()=>{}} navigateScreen={()=>navigateScreen2(item.ingredients, item.process, item.utensils, item.steps)}  /> 
+                  </View>
+                )
+              }
             })
           }
           

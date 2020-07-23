@@ -33,10 +33,6 @@ export default function RecommendedBox(props) {
     image = 'https://upload.wikimedia.org/wikipedia/commons/2/28/Galbi-tang_ingredients.jpg';
   }
 
-  if (props.imgSrc) {
-    // console.log(props.imgSrc)
-  }
-
 
   return (
     <View style={styles.container} >
@@ -47,10 +43,7 @@ export default function RecommendedBox(props) {
         }}>
 
             <View style={styles.innerContainer} >
-              {/* {
-                props.saveButton===true ? 
-                saveButton(props.saveFunction) : (props.removeButton===true ? removeButton(props.removeFunction) : <Text />)     
-              } */}
+            
                <ImageBackground style={styles.image} source={{uri: image}}>
                 {props.saveButton===true ? 
                 saveButton(props.saveFunction) : (props.removeButton===true ? removeButton(props.removeFunction) : <Text />)  }   

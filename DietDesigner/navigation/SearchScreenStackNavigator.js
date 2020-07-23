@@ -14,8 +14,8 @@ export default function SearchScreenStackNavigator() {
             headerShown: true
           }} >
             <Stack.Screen name='Search for the Ingredients' component={SearchScreen} />
-            <Stack.Screen name='IngredientInfoScreen' component={IngredientInfoScreen} />
-            <Stack.Screen name='NutritionalInfoScreen' component={NutritionalInfoScreen} />
+            <Stack.Screen name='Ingredient Info' component={IngredientInfoScreen} />
+            <Stack.Screen name='Nutritional Info' component={NutritionalInfoScreen} />
             <Stack.Screen name='SearchLink' component={SearchLink} />
         </Stack.Navigator>
     )

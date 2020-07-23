@@ -8,7 +8,7 @@ export default function Button1(props) {
 
   const onPressHandler = (nutrients, name) => {
     let quantity = 100;
-    props.navigation.navigate('NutritionalInfoScreen', {nutrients, name, quantity});
+    props.navigation.navigate('Nutritional Info', {nutrients, name, quantity});
   }
 
   React.useEffect(()=>{

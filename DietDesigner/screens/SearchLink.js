@@ -27,7 +27,7 @@ export default class SearchLink extends Component {
 
 _onPress(item) {
     console.log(item)
-    this.props.navigation.navigate('IngredientInfoScreen', 
+    this.props.navigation.navigate('Ingredient Info', 
       {ingredientName: item.title.split(' ').slice(-2).join(' ').toUpperCase()??'',calories: item.calories, 
       carbohydrates: item.carbohydrates??100, 
       proteins: item.nutrients.proteins??50, 

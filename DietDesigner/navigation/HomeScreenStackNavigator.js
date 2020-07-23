@@ -12,9 +12,9 @@ export default function HomeScreenStackNavigator() {
         <Stack.Navigator initialRouteName='SearchScreen' screenOptions={{
             headerShown: true
           }} >
-            <Stack.Screen name='RecommendedScreen' component={HomeScreen} />
-            <Stack.Screen name='IngredientInfoScreen' component={IngredientInfoScreen} />
-            <Stack.Screen name='NutritionalInfoScreen' component={NutritionalInfoScreen} />
+            <Stack.Screen name='Home' component={HomeScreen} />
+            <Stack.Screen name='Ingredient Info' component={IngredientInfoScreen} />
+            <Stack.Screen name='Nutritional Info' component={NutritionalInfoScreen} />
         </Stack.Navigator>
     )
 }

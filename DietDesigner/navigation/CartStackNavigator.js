@@ -11,8 +11,8 @@ export default function CartStackNavigator() {
         <Stack.Navigator initialRouteName='CartScreen' screenOptions={{
             headerShown: true
           }} >
-            <Stack.Screen name='CartScreen' component={CartScreen} />
-            <Stack.Screen name='NutritionalInfoScreen' component={NutritionalInfoScreen} />
+            <Stack.Screen name='Cart' component={CartScreen} />
+            <Stack.Screen name='Nutritional Info' component={NutritionalInfoScreen} />
         </Stack.Navigator>
     )
 }

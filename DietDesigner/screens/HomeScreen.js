@@ -1,3 +1,4 @@
+import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {useState, useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -54,7 +55,7 @@ export default function HomeScreen({navigation, routes}) {
   const navigateScreen = (name, calories, carbohydrates, proteins, fats, nutrients, image) => {
     // name, carbohydrates, proteins, fats
     // navigation.navigate('IngredientInfoScreen', {ingredientName: name??'',carbohydrates: carbohydrates??100, proteins: proteins??50, fats: fats??20});
-    navigation.navigate('IngredientInfoScreen', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:proteins, fats:fats, nutrients:nutrients, image: image});
+    navigation.navigate('Ingredient Info', {ingredientName: name.split(' ').slice(-2).join(' ').toUpperCase()??'', calories:calories, carbohydrates:carbohydrates??100, proteins:proteins, fats:fats, nutrients:nutrients, image: image});
   }
 
 
